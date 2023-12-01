@@ -13,13 +13,18 @@ class HotelsUpdateRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'iam_account_id' => 'nullable|exists:iam_accounts,uuid|uuid',
-        'iam_user_id'    => 'nullable|exists:iam_users,uuid|uuid',
-        'name'           => 'nullable|string|max:500',
-        'description'    => 'nullable|string',
-        'address'        => 'nullable|string|max:500',
-        'facilities'     => 'nullable',
-        'city'           => 'nullable|string|max:50',
+            'name'                => 'nullable|string|max:500',
+        'description'         => 'nullable|string',
+        'address'             => 'nullable|string|max:500',
+        'facilities'          => 'nullable',
+        'email'               => 'nullable|string|max:100',
+        'phone'               => 'nullable|string|max:20',
+        'city'                => 'nullable|string|max:50',
+        'common_country_id'   => 'nullable|exists:common_countries,uuid|uuid',
+        'foreground_media_id' => 'nullable|exists:foreground_media,uuid|uuid',
+        'background_media_id' => 'nullable|exists:background_media,uuid|uuid',
+        'latitude'            => 'nullable|numeric',
+        'longitude'           => 'nullable|numeric',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Stay\Database\Observers\RoomsObserver;
 use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 
 /**
  * Class Rooms.
@@ -16,7 +17,7 @@ use NextDeveloper\Commons\Database\Traits\UuidId;
  */
 class Rooms extends Model
 {
-    use Filterable, UuidId;
+    use Filterable, UuidId, CleanCache;
     use SoftDeletes;
 
 
@@ -133,5 +134,6 @@ class Rooms extends Model
         return $this->belongsTo(\NextDeveloper\Stay\Database\Models\RoomTypes::class);
     }
     
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Stay\Database\Observers\ReservationsObserver;
 use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 
 /**
  * Class Reservations.
@@ -16,7 +17,7 @@ use NextDeveloper\Commons\Database\Traits\UuidId;
  */
 class Reservations extends Model
 {
-    use Filterable, UuidId;
+    use Filterable, UuidId, CleanCache;
     use SoftDeletes;
 
 
@@ -55,7 +56,6 @@ class Reservations extends Model
     'stay_hotels_id'    => 'integer',
     'stay_room_id'      => 'integer',
     'stay_room_type_id' => 'integer',
-    'iam_user_id'       => 'integer',
     'reservation_date'  => 'datetime',
     'created_at'        => 'datetime',
     'updated_at'        => 'datetime',
@@ -136,5 +136,6 @@ class Reservations extends Model
         return $this->belongsTo(\NextDeveloper\Stay\Database\Models\Rooms::class);
     }
     
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 }

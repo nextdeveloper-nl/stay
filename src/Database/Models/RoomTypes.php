@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Stay\Database\Observers\RoomTypesObserver;
 use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 
 /**
  * Class RoomTypes.
@@ -16,7 +17,7 @@ use NextDeveloper\Commons\Database\Traits\UuidId;
  */
 class RoomTypes extends Model
 {
-    use Filterable, UuidId;
+    use Filterable, UuidId, CleanCache;
     use SoftDeletes;
 
 
@@ -140,5 +141,6 @@ class RoomTypes extends Model
         return $this->hasMany(\NextDeveloper\Stay\Database\Models\Rooms::class);
     }
 
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Stay\Database\Observers\HotelsObserver;
 use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 
 /**
  * Class Hotels.
@@ -16,7 +17,7 @@ use NextDeveloper\Commons\Database\Traits\UuidId;
  */
 class Hotels extends Model
 {
-    use Filterable, UuidId;
+    use Filterable, UuidId, CleanCache;
     use SoftDeletes;
 
 
@@ -50,17 +51,22 @@ class Hotels extends Model
      @var array
      */
     protected $casts = [
-    'id'             => 'integer',
-    'uuid'           => 'string',
-    'iam_account_id' => 'integer',
-    'iam_user_id'    => 'integer',
-    'name'           => 'string',
-    'description'    => 'string',
-    'address'        => 'string',
-    'city'           => 'string',
-    'created_at'     => 'datetime',
-    'updated_at'     => 'datetime',
-    'deleted_at'     => 'datetime',
+    'id'                  => 'integer',
+    'uuid'                => 'string',
+    'name'                => 'string',
+    'description'         => 'string',
+    'address'             => 'string',
+    'email'               => 'string',
+    'phone'               => 'string',
+    'city'                => 'string',
+    'common_country_id'   => 'integer',
+    'foreground_media_id' => 'integer',
+    'background_media_id' => 'integer',
+    'latitude'            => 'double',
+    'longitude'           => 'double',
+    'created_at'          => 'datetime',
+    'updated_at'          => 'datetime',
+    'deleted_at'          => 'datetime',
     ];
 
     /**
@@ -146,5 +152,6 @@ class Hotels extends Model
         return $this->hasMany(\NextDeveloper\Stay\Database\Models\Rooms::class);
     }
 
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 }

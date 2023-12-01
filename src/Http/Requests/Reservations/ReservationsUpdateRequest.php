@@ -16,7 +16,6 @@ class ReservationsUpdateRequest extends AbstractFormRequest
             'stay_hotels_id'    => 'nullable|exists:stay_hotels,uuid|uuid',
         'stay_room_id'      => 'nullable|exists:stay_rooms,uuid|uuid',
         'stay_room_type_id' => 'nullable|exists:stay_room_types,uuid|uuid',
-        'iam_user_id'       => 'nullable|exists:iam_users,uuid|uuid',
         'reservation_date'  => 'nullable|date',
         'reservation_data'  => 'nullable',
         ];

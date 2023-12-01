@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-        
+                    
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -32,11 +32,47 @@ class HotelsQueryFilter extends AbstractQueryFilter
         return $this->builder->where('address', 'like', '%' . $value . '%');
     }
     
+    public function email($value)
+    {
+        return $this->builder->where('email', 'like', '%' . $value . '%');
+    }
+    
+    public function phone($value)
+    {
+        return $this->builder->where('phone', 'like', '%' . $value . '%');
+    }
+    
     public function city($value)
     {
         return $this->builder->where('city', 'like', '%' . $value . '%');
     }
 
+    public function latitude($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('latitude', $operator, $value);
+    }
+    
+    public function longitude($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('longitude', $operator, $value);
+    }
+    
     public function createdAtStart($date) 
     {
         return $this->builder->where('created_at', '>=', $date);
@@ -85,5 +121,32 @@ class HotelsQueryFilter extends AbstractQueryFilter
         }
     }
 
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+    public function commonCountryId($value)
+    {
+            $commonCountry = \NextDeveloper\Commons\Database\Models\Countries::where('uuid', $value)->first();
+
+        if($commonCountry) {
+            return $this->builder->where('common_country_id', '=', $commonCountry->id);
+        }
+    }
+
+    public function foregroundMediaId($value)
+    {
+            $foregroundMedia = \NextDeveloper\\Database\Models\ForegroundMedia::where('uuid', $value)->first();
+
+        if($foregroundMedia) {
+            return $this->builder->where('foreground_media_id', '=', $foregroundMedia->id);
+        }
+    }
+
+    public function backgroundMediaId($value)
+    {
+            $backgroundMedia = \NextDeveloper\\Database\Models\BackgroundMedia::where('uuid', $value)->first();
+
+        if($backgroundMedia) {
+            return $this->builder->where('background_media_id', '=', $backgroundMedia->id);
+        }
+    }
+
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n
 }
