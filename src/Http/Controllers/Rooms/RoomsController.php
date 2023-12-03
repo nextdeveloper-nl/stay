@@ -46,6 +46,20 @@ class RoomsController extends AbstractController
     }
 
     /**
+     * This method returns the list of sub objects the related object.
+     *
+     * @param  $ref
+     * @param  $subObject
+     * @return void
+     */
+    public function subObjects($ref, $subObject)
+    {
+        $objects = RoomsService::getSubObjects($ref, $subObject);
+
+        return ResponsableFactory::makeResponse($this, $objects);
+    }
+
+    /**
      * This method created Rooms object on database.
      *
      * @param  RoomsCreateRequest $request
