@@ -25,7 +25,7 @@ class AbstractHotelsTransformer extends AbstractTransformer
                     $commonCountryId = \NextDeveloper\Commons\Database\Models\Countries::where('id', $model->common_country_id)->first();
                     $foregroundMediaId = \NextDeveloper\\Database\Models\ForegroundMedia::where('id', $model->foreground_media_id)->first();
                     $backgroundMediaId = \NextDeveloper\\Database\Models\BackgroundMedia::where('id', $model->background_media_id)->first();
-            
+        
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
@@ -43,12 +43,13 @@ class AbstractHotelsTransformer extends AbstractTransformer
             'background_media_id'  =>  $backgroundMediaId ? $backgroundMediaId->uuid : null,
             'latitude'  =>  $model->latitude,
             'longitude'  =>  $model->longitude,
-            'created_at'  =>  $model->created_at,
-            'updated_at'  =>  $model->updated_at,
-            'deleted_at'  =>  $model->deleted_at,
+            'created_at'  =>  $model->created_at ? $model->created_at->toIso8601String() : null,
+            'updated_at'  =>  $model->updated_at ? $model->updated_at->toIso8601String() : null,
+            'deleted_at'  =>  $model->deleted_at ? $model->deleted_at->toIso8601String() : null,
             ]
         );
     }
-    
-    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+    // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n
+
 }
