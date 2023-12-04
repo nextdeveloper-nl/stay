@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Stay\Database\Models\RoomTypes;
 use NextDeveloper\Stay\Database\Filters\RoomTypesQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Stay\Events\RoomTypes\RoomTypesCreatedEvent;
 use NextDeveloper\Stay\Events\RoomTypes\RoomTypesCreatingEvent;
 use NextDeveloper\Stay\Events\RoomTypes\RoomTypesUpdatedEvent;
 use NextDeveloper\Stay\Events\RoomTypes\RoomTypesUpdatingEvent;
 use NextDeveloper\Stay\Events\RoomTypes\RoomTypesDeletedEvent;
 use NextDeveloper\Stay\Events\RoomTypes\RoomTypesDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for RoomTypes
@@ -97,6 +97,31 @@ class AbstractRoomTypesService
     }
 
     /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = RoomTypes::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    /**
      * This method created the model from an array.
      *
      * Throws an exception if stuck with any problem.
@@ -121,7 +146,7 @@ class AbstractRoomTypesService
                 $data['common_currency_id']
             );
         }
-            
+    
         try {
             $model = RoomTypes::create($data);
         } catch(\Exception $e) {
@@ -199,7 +224,7 @@ class AbstractRoomTypesService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = RoomTypes::where('uuid', $id)->first();
 
@@ -210,8 +235,6 @@ class AbstractRoomTypesService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new RoomTypesDeletedEvent($model));
 
         return $model;
     }

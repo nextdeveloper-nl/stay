@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Stay\Database\Models\Hotels;
 use NextDeveloper\Stay\Database\Filters\HotelsQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Stay\Events\Hotels\HotelsCreatedEvent;
 use NextDeveloper\Stay\Events\Hotels\HotelsCreatingEvent;
 use NextDeveloper\Stay\Events\Hotels\HotelsUpdatedEvent;
 use NextDeveloper\Stay\Events\Hotels\HotelsUpdatingEvent;
 use NextDeveloper\Stay\Events\Hotels\HotelsDeletedEvent;
 use NextDeveloper\Stay\Events\Hotels\HotelsDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for Hotels
@@ -97,6 +97,31 @@ class AbstractHotelsService
     }
 
     /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = Hotels::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    /**
      * This method created the model from an array.
      *
      * Throws an exception if stuck with any problem.
@@ -121,7 +146,25 @@ class AbstractHotelsService
                 $data['iam_user_id']
             );
         }
-            
+        if (array_key_exists('common_country_id', $data)) {
+            $data['common_country_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Countries',
+                $data['common_country_id']
+            );
+        }
+        if (array_key_exists('foreground_media_id', $data)) {
+            $data['foreground_media_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\\Database\Models\ForegroundMedia',
+                $data['foreground_media_id']
+            );
+        }
+        if (array_key_exists('background_media_id', $data)) {
+            $data['background_media_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\\Database\Models\BackgroundMedia',
+                $data['background_media_id']
+            );
+        }
+    
         try {
             $model = Hotels::create($data);
         } catch(\Exception $e) {
@@ -174,6 +217,24 @@ class AbstractHotelsService
                 $data['iam_user_id']
             );
         }
+        if (array_key_exists('common_country_id', $data)) {
+            $data['common_country_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Countries',
+                $data['common_country_id']
+            );
+        }
+        if (array_key_exists('foreground_media_id', $data)) {
+            $data['foreground_media_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\\Database\Models\ForegroundMedia',
+                $data['foreground_media_id']
+            );
+        }
+        if (array_key_exists('background_media_id', $data)) {
+            $data['background_media_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\\Database\Models\BackgroundMedia',
+                $data['background_media_id']
+            );
+        }
     
         event(new HotelsUpdatingEvent($model));
 
@@ -199,7 +260,7 @@ class AbstractHotelsService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = Hotels::where('uuid', $id)->first();
 
@@ -210,8 +271,6 @@ class AbstractHotelsService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new HotelsDeletedEvent($model));
 
         return $model;
     }

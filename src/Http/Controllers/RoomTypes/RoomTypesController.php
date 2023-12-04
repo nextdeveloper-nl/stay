@@ -7,11 +7,15 @@ use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
 use NextDeveloper\Stay\Http\Requests\RoomTypes\RoomTypesUpdateRequest;
 use NextDeveloper\Stay\Database\Filters\RoomTypesQueryFilter;
+use NextDeveloper\Stay\Database\Models\RoomTypes;
 use NextDeveloper\Stay\Services\RoomTypesService;
 use NextDeveloper\Stay\Http\Requests\RoomTypes\RoomTypesCreateRequest;
-
+use NextDeveloper\Commons\Http\Traits\Tags;
 class RoomTypesController extends AbstractController
 {
+    private $model = RoomTypes::class;
+
+    use Tags;
     /**
      * This method returns the list of roomtypes.
      *
@@ -46,15 +50,18 @@ class RoomTypesController extends AbstractController
     }
 
     /**
-     * This method returns the list of sub objects the related object.
+     * This method returns the list of sub objects the related object. Sub object means an object which is preowned by
+     * this object.
+     *
+     * It can be tags, addresses, states etc.
      *
      * @param  $ref
      * @param  $subObject
      * @return void
      */
-    public function subObjects($ref, $subObject)
+    public function relatedObjects($ref, $subObject)
     {
-        $objects = RoomTypesService::getSubObjects($ref, $subObject);
+        $objects = RoomTypesService::relatedObjects($ref, $subObject);
 
         return ResponsableFactory::makeResponse($this, $objects);
     }

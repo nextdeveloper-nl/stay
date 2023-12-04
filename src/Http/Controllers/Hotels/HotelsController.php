@@ -7,11 +7,15 @@ use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
 use NextDeveloper\Stay\Http\Requests\Hotels\HotelsUpdateRequest;
 use NextDeveloper\Stay\Database\Filters\HotelsQueryFilter;
+use NextDeveloper\Stay\Database\Models\Hotels;
 use NextDeveloper\Stay\Services\HotelsService;
 use NextDeveloper\Stay\Http\Requests\Hotels\HotelsCreateRequest;
-
+use NextDeveloper\Commons\Http\Traits\Tags;
 class HotelsController extends AbstractController
 {
+    private $model = Hotels::class;
+
+    use Tags;
     /**
      * This method returns the list of hotels.
      *
@@ -46,15 +50,18 @@ class HotelsController extends AbstractController
     }
 
     /**
-     * This method returns the list of sub objects the related object.
+     * This method returns the list of sub objects the related object. Sub object means an object which is preowned by
+     * this object.
+     *
+     * It can be tags, addresses, states etc.
      *
      * @param  $ref
      * @param  $subObject
      * @return void
      */
-    public function subObjects($ref, $subObject)
+    public function relatedObjects($ref, $subObject)
     {
-        $objects = HotelsService::getSubObjects($ref, $subObject);
+        $objects = HotelsService::relatedObjects($ref, $subObject);
 
         return ResponsableFactory::makeResponse($this, $objects);
     }

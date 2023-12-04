@@ -158,4 +158,5 @@ class Hotels extends Model
 
 
 
+
 }

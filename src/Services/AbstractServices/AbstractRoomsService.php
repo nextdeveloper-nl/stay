@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Stay\Database\Models\Rooms;
 use NextDeveloper\Stay\Database\Filters\RoomsQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Stay\Events\Rooms\RoomsCreatedEvent;
 use NextDeveloper\Stay\Events\Rooms\RoomsCreatingEvent;
 use NextDeveloper\Stay\Events\Rooms\RoomsUpdatedEvent;
 use NextDeveloper\Stay\Events\Rooms\RoomsUpdatingEvent;
 use NextDeveloper\Stay\Events\Rooms\RoomsDeletedEvent;
 use NextDeveloper\Stay\Events\Rooms\RoomsDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for Rooms
@@ -97,6 +97,31 @@ class AbstractRoomsService
     }
 
     /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = Rooms::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    /**
      * This method created the model from an array.
      *
      * Throws an exception if stuck with any problem.
@@ -121,7 +146,7 @@ class AbstractRoomsService
                 $data['stay_room_type_id']
             );
         }
-            
+    
         try {
             $model = Rooms::create($data);
         } catch(\Exception $e) {
@@ -199,7 +224,7 @@ class AbstractRoomsService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = Rooms::where('uuid', $id)->first();
 
@@ -210,8 +235,6 @@ class AbstractRoomsService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new RoomsDeletedEvent($model));
 
         return $model;
     }

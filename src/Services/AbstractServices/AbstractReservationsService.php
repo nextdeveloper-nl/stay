@@ -11,13 +11,13 @@ use NextDeveloper\Commons\Common\Cache\CacheHelper;
 use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Stay\Database\Models\Reservations;
 use NextDeveloper\Stay\Database\Filters\ReservationsQueryFilter;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Stay\Events\Reservations\ReservationsCreatedEvent;
 use NextDeveloper\Stay\Events\Reservations\ReservationsCreatingEvent;
 use NextDeveloper\Stay\Events\Reservations\ReservationsUpdatedEvent;
 use NextDeveloper\Stay\Events\Reservations\ReservationsUpdatingEvent;
 use NextDeveloper\Stay\Events\Reservations\ReservationsDeletedEvent;
 use NextDeveloper\Stay\Events\Reservations\ReservationsDeletingEvent;
-
 
 /**
  * This class is responsible from managing the data for Reservations
@@ -97,6 +97,31 @@ class AbstractReservationsService
     }
 
     /**
+     * This method returns the sub objects of the related models
+     *
+     * @param  $uuid
+     * @param  $object
+     * @return void
+     * @throws \Laravel\Octane\Exceptions\DdException
+     */
+    public static function relatedObjects($uuid, $object)
+    {
+        try {
+            $obj = Reservations::where('uuid', $uuid)->first();
+
+            if(!$obj) {
+                throw new ModelNotFoundException('Cannot find the related model');
+            }
+
+            if($obj) {
+                return $obj->$object;
+            }
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    /**
      * This method created the model from an array.
      *
      * Throws an exception if stuck with any problem.
@@ -133,7 +158,7 @@ class AbstractReservationsService
                 $data['iam_user_id']
             );
         }
-            
+    
         try {
             $model = Reservations::create($data);
         } catch(\Exception $e) {
@@ -223,7 +248,7 @@ class AbstractReservationsService
      * @return mixed
      * @throw  Exception
      */
-    public static function delete($id, array $data)
+    public static function delete($id)
     {
         $model = Reservations::where('uuid', $id)->first();
 
@@ -234,8 +259,6 @@ class AbstractReservationsService
         } catch(\Exception $e) {
             throw $e;
         }
-
-        event(new ReservationsDeletedEvent($model));
 
         return $model;
     }
