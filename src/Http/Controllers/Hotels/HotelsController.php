@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Http\Controllers\Hotels;
 
 use Illuminate\Http\Request;
 use NextDeveloper\Stay\Http\Controllers\AbstractController;
-use NextDeveloper\Generator\Http\Traits\ResponsableFactory;
+use NextDeveloper\Commons\Http\Traits\ResponsableFactory;
 use NextDeveloper\Stay\Http\Requests\Hotels\HotelsUpdateRequest;
 use NextDeveloper\Stay\Database\Filters\HotelsQueryFilter;
 use NextDeveloper\Stay\Database\Models\Hotels;

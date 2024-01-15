@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                    
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -16,32 +16,32 @@ class HotelsQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function name($value)
     {
         return $this->builder->where('name', 'like', '%' . $value . '%');
     }
-    
+
     public function description($value)
     {
         return $this->builder->where('description', 'like', '%' . $value . '%');
     }
-    
+
     public function address($value)
     {
         return $this->builder->where('address', 'like', '%' . $value . '%');
     }
-    
+
     public function email($value)
     {
         return $this->builder->where('email', 'like', '%' . $value . '%');
     }
-    
+
     public function phone($value)
     {
         return $this->builder->where('phone', 'like', '%' . $value . '%');
     }
-    
+
     public function city($value)
     {
         return $this->builder->where('city', 'like', '%' . $value . '%');
@@ -59,7 +59,7 @@ class HotelsQueryFilter extends AbstractQueryFilter
 
         return $this->builder->where('latitude', $operator, $value);
     }
-    
+
     public function longitude($value)
     {
         $operator = substr($value, 0, 1);
@@ -72,33 +72,33 @@ class HotelsQueryFilter extends AbstractQueryFilter
 
         return $this->builder->where('longitude', $operator, $value);
     }
-    
-    public function createdAtStart($date) 
+
+    public function createdAtStart($date)
     {
         return $this->builder->where('created_at', '>=', $date);
     }
 
-    public function createdAtEnd($date) 
+    public function createdAtEnd($date)
     {
         return $this->builder->where('created_at', '<=', $date);
     }
 
-    public function updatedAtStart($date) 
+    public function updatedAtStart($date)
     {
         return $this->builder->where('updated_at', '>=', $date);
     }
 
-    public function updatedAtEnd($date) 
+    public function updatedAtEnd($date)
     {
         return $this->builder->where('updated_at', '<=', $date);
     }
 
-    public function deletedAtStart($date) 
+    public function deletedAtStart($date)
     {
         return $this->builder->where('deleted_at', '>=', $date);
     }
 
-    public function deletedAtEnd($date) 
+    public function deletedAtEnd($date)
     {
         return $this->builder->where('deleted_at', '<=', $date);
     }
@@ -132,7 +132,7 @@ class HotelsQueryFilter extends AbstractQueryFilter
 
     public function foregroundMediaId($value)
     {
-            $foregroundMedia = \NextDeveloper\\Database\Models\ForegroundMedia::where('uuid', $value)->first();
+            $foregroundMedia = \NextDeveloper\Commons\Database\Models\Media::where('uuid', $value)->first();
 
         if($foregroundMedia) {
             return $this->builder->where('foreground_media_id', '=', $foregroundMedia->id);
@@ -141,7 +141,7 @@ class HotelsQueryFilter extends AbstractQueryFilter
 
     public function backgroundMediaId($value)
     {
-            $backgroundMedia = \NextDeveloper\\Database\Models\BackgroundMedia::where('uuid', $value)->first();
+            $backgroundMedia = \NextDeveloper\Commons\Database\Models\Media::where('uuid', $value)->first();
 
         if($backgroundMedia) {
             return $this->builder->where('background_media_id', '=', $backgroundMedia->id);
