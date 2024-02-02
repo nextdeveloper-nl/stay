@@ -63,9 +63,8 @@ trait StayHotelTestTraits
                 'address'  =>  'a',
                 'email'  =>  'a',
                 'phone'  =>  'a',
-                'city'  =>  'a',
-                'latitude'  =>  '1',
-                'longitude'  =>  '1',
+                'latitude'  =>  'a',
+                'longitude'  =>  'a',
                             ],
                 ['http_errors' => false]
             ]
@@ -443,31 +442,12 @@ trait StayHotelTestTraits
         $this->assertTrue(true);
     }
 
-    public function test_stayhotel_event_city_filter()
-    {
-        try {
-            $request = new Request(
-                [
-                'city'  =>  'a'
-                ]
-            );
-
-            $filter = new StayHotelQueryFilter($request);
-
-            $model = \NextDeveloper\Stay\Database\Models\StayHotel::filter($filter)->first();
-        } catch (\Exception $e) {
-            $this->assertFalse(false, $e->getMessage());
-        }
-
-        $this->assertTrue(true);
-    }
-
     public function test_stayhotel_event_latitude_filter()
     {
         try {
             $request = new Request(
                 [
-                'latitude'  =>  '1'
+                'latitude'  =>  'a'
                 ]
             );
 
@@ -486,7 +466,7 @@ trait StayHotelTestTraits
         try {
             $request = new Request(
                 [
-                'longitude'  =>  '1'
+                'longitude'  =>  'a'
                 ]
             );
 

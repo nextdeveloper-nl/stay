@@ -13,11 +13,11 @@ class RoomTypesCreateRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'stay_hotels_id'     => 'nullable|exists:stay_hotels,uuid|uuid',
-        'name'               => 'required|string|max:500',
-        'description'        => 'nullable|string',
-        'facilities'         => 'nullable',
-        'price'              => 'nullable|numeric',
+            'stay_hotels_id' => 'nullable|exists:stay_hotels,uuid|uuid',
+        'name' => 'required|string',
+        'description' => 'nullable|string',
+        'facilities' => 'nullable',
+        'price' => 'nullable',
         'common_currency_id' => 'nullable|exists:common_currencies,uuid|uuid',
         ];
     }

@@ -52,15 +52,15 @@ class Reservations extends Model
      @var array
      */
     protected $casts = [
-    'id'                => 'integer',
-    'uuid'              => 'string',
-    'stay_hotels_id'    => 'integer',
-    'stay_room_id'      => 'integer',
+    'id' => 'integer',
+    'stay_hotels_id' => 'integer',
+    'stay_room_id' => 'integer',
     'stay_room_type_id' => 'integer',
-    'reservation_date'  => 'datetime',
-    'created_at'        => 'datetime',
-    'updated_at'        => 'datetime',
-    'deleted_at'        => 'datetime',
+    'reservation_date' => 'datetime',
+    'reservation_data' => 'array',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+    'deleted_at' => 'datetime',
     ];
 
     /**
@@ -122,22 +122,8 @@ class Reservations extends Model
         }
     }
 
-    public function hotels() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Stay\Database\Models\Hotels::class);
-    }
-    
-    public function roomTypes() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Stay\Database\Models\RoomTypes::class);
-    }
-    
-    public function rooms() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Stay\Database\Models\Rooms::class);
-    }
-    
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 
