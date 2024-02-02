@@ -60,7 +60,6 @@ trait StayRoomTypeTestTraits
             'form_params'   =>  [
                 'name'  =>  'a',
                 'description'  =>  'a',
-                'price'  =>  '1',
                             ],
                 ['http_errors' => false]
             ]
@@ -368,25 +367,6 @@ trait StayRoomTypeTestTraits
             $request = new Request(
                 [
                 'description'  =>  'a'
-                ]
-            );
-
-            $filter = new StayRoomTypeQueryFilter($request);
-
-            $model = \NextDeveloper\Stay\Database\Models\StayRoomType::filter($filter)->first();
-        } catch (\Exception $e) {
-            $this->assertFalse(false, $e->getMessage());
-        }
-
-        $this->assertTrue(true);
-    }
-
-    public function test_stayroomtype_event_price_filter()
-    {
-        try {
-            $request = new Request(
-                [
-                'price'  =>  '1'
                 ]
             );
 

@@ -52,22 +52,22 @@ class Hotels extends Model
      @var array
      */
     protected $casts = [
-    'id'                  => 'integer',
-    'uuid'                => 'string',
-    'name'                => 'string',
-    'description'         => 'string',
-    'address'             => 'string',
-    'email'               => 'string',
-    'phone'               => 'string',
-    'city'                => 'string',
-    'common_country_id'   => 'integer',
+    'id' => 'integer',
+    'name' => 'string',
+    'description' => 'string',
+    'address' => 'string',
+    'facilities' => 'array',
+    'email' => 'string',
+    'phone' => 'string',
+    'common_city_id' => 'integer',
+    'common_country_id' => 'integer',
     'foreground_media_id' => 'integer',
     'background_media_id' => 'integer',
-    'latitude'            => 'double',
-    'longitude'           => 'double',
-    'created_at'          => 'datetime',
-    'updated_at'          => 'datetime',
-    'deleted_at'          => 'datetime',
+    'latitude' => 'string',
+    'longitude' => 'string',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+    'deleted_at' => 'datetime',
     ];
 
     /**
@@ -128,32 +128,8 @@ class Hotels extends Model
         }
     }
 
-    public function accounts() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\IAM\Database\Models\Accounts::class);
-    }
-    
-    public function users() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\IAM\Database\Models\Users::class);
-    }
-    
-    public function reservations() : \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\NextDeveloper\Stay\Database\Models\Reservations::class);
-    }
-
-    public function roomTypes() : \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\NextDeveloper\Stay\Database\Models\RoomTypes::class);
-    }
-
-    public function rooms() : \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\NextDeveloper\Stay\Database\Models\Rooms::class);
-    }
-
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 

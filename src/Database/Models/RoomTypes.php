@@ -52,16 +52,15 @@ class RoomTypes extends Model
      @var array
      */
     protected $casts = [
-    'id'                 => 'integer',
-    'uuid'               => 'string',
-    'stay_hotels_id'     => 'integer',
-    'name'               => 'string',
-    'description'        => 'string',
-    'price'              => 'double',
+    'id' => 'integer',
+    'stay_hotels_id' => 'integer',
+    'name' => 'string',
+    'description' => 'string',
+    'facilities' => 'array',
     'common_currency_id' => 'integer',
-    'created_at'         => 'datetime',
-    'updated_at'         => 'datetime',
-    'deleted_at'         => 'datetime',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+    'deleted_at' => 'datetime',
     ];
 
     /**
@@ -122,27 +121,8 @@ class RoomTypes extends Model
         }
     }
 
-    public function reservations() : \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\NextDeveloper\Stay\Database\Models\Reservations::class);
-    }
-
-    public function countries() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Commons\Database\Models\Countries::class);
-    }
-    
-    public function hotels() : \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\NextDeveloper\Stay\Database\Models\Hotels::class);
-    }
-    
-    public function rooms() : \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\NextDeveloper\Stay\Database\Models\Rooms::class);
-    }
-
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 

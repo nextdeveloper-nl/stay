@@ -13,9 +13,9 @@ class RoomsUpdateRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'name'              => 'nullable|string|max:50',
-        'features'          => 'nullable',
-        'stay_hotels_id'    => 'nullable|exists:stay_hotels,uuid|uuid',
+            'name' => 'nullable|string',
+        'features' => 'nullable',
+        'stay_hotels_id' => 'nullable|exists:stay_hotels,uuid|uuid',
         'stay_room_type_id' => 'nullable|exists:stay_room_types,uuid|uuid',
         ];
     }
