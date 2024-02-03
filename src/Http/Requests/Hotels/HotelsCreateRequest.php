@@ -15,7 +15,7 @@ class HotelsCreateRequest extends AbstractFormRequest
         return [
             'name' => 'required|string',
         'description' => 'nullable|string',
-        'address' => 'required|string',
+        'address' => 'nullable|string',
         'facilities' => 'nullable',
         'email' => 'nullable|string',
         'phone' => 'nullable|string',
