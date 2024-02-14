@@ -12,9 +12,28 @@ use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
 use NextDeveloper\Commons\Database\Traits\Taggable;
 
 /**
- * Class Hotels.
+ * Hotels model.
  *
- * @package NextDeveloper\Stay\Database\Models
+ * @package  NextDeveloper\Stay\Database\Models
+ * @property integer $id
+ * @property string $uuid
+ * @property integer $iam_account_id
+ * @property integer $iam_user_id
+ * @property string $name
+ * @property string $description
+ * @property string $address
+ * @property $facilities
+ * @property string $email
+ * @property string $phone
+ * @property integer $common_city_id
+ * @property integer $common_country_id
+ * @property integer $foreground_media_id
+ * @property integer $background_media_id
+ * @property string $latitude
+ * @property string $longitude
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
  */
 class Hotels extends Model
 {
@@ -31,6 +50,23 @@ class Hotels extends Model
      @var array
      */
     protected $guarded = [];
+
+    protected $fillable = [
+            'iam_account_id',
+            'iam_user_id',
+            'name',
+            'description',
+            'address',
+            'facilities',
+            'email',
+            'phone',
+            'common_city_id',
+            'common_country_id',
+            'foreground_media_id',
+            'background_media_id',
+            'latitude',
+            'longitude',
+    ];
 
     /**
       Here we have the fulltext fields. We can use these for fulltext search if enabled.
@@ -129,6 +165,15 @@ class Hotels extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
+
+
+
+
+
+
+
+
 
 
 

@@ -12,12 +12,7 @@ use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Stay\Database\Models\Reservations;
 use NextDeveloper\Stay\Database\Filters\ReservationsQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Stay\Events\Reservations\ReservationsCreatedEvent;
-use NextDeveloper\Stay\Events\Reservations\ReservationsCreatingEvent;
-use NextDeveloper\Stay\Events\Reservations\ReservationsUpdatedEvent;
-use NextDeveloper\Stay\Events\Reservations\ReservationsUpdatingEvent;
-use NextDeveloper\Stay\Events\Reservations\ReservationsDeletedEvent;
-use NextDeveloper\Stay\Events\Reservations\ReservationsDeletingEvent;
+use NextDeveloper\Events\Services\Events;
 
 /**
  * This class is responsible from managing the data for Reservations
@@ -132,8 +127,6 @@ class AbstractReservationsService
      */
     public static function create(array $data)
     {
-        event(new ReservationsCreatingEvent());
-
         if (array_key_exists('stay_hotels_id', $data)) {
             $data['stay_hotels_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Stay\Database\Models\Hotels',
@@ -159,22 +152,30 @@ class AbstractReservationsService
             );
         }
     
+        if(!array_key_exists('iam_account_id', $data)) {
+            $data['iam_account_id'] = UserHelper::currentAccount()->id;
+        }
+
+        if(!array_key_exists('iam_user_id', $data)) {
+            $data['iam_user_id']    = UserHelper::me()->id;
+        }
+
         try {
             $model = Reservations::create($data);
         } catch(\Exception $e) {
             throw $e;
         }
 
-        event(new ReservationsCreatedEvent($model));
+        Events::fire('created:NextDeveloper\Stay\Reservations', $model);
 
         return $model->fresh();
     }
 
     /**
-     This function expects the ID inside the object.
-    
-     @param  array $data
-     @return Reservations
+     * This function expects the ID inside the object.
+     *
+     * @param  array $data
+     * @return Reservations
      */
     public static function updateRaw(array $data) : ?Reservations
     {
@@ -224,7 +225,7 @@ class AbstractReservationsService
             );
         }
     
-        event(new ReservationsUpdatingEvent($model));
+        Events::fire('updating:NextDeveloper\Stay\Reservations', $model);
 
         try {
             $isUpdated = $model->update($data);
@@ -233,7 +234,7 @@ class AbstractReservationsService
             throw $e;
         }
 
-        event(new ReservationsUpdatedEvent($model));
+        Events::fire('updated:NextDeveloper\Stay\Reservations', $model);
 
         return $model->fresh();
     }
@@ -252,7 +253,7 @@ class AbstractReservationsService
     {
         $model = Reservations::where('uuid', $id)->first();
 
-        event(new ReservationsDeletingEvent());
+        Events::fire('deleted:NextDeveloper\Stay\Reservations', $model);
 
         try {
             $model = $model->delete();
