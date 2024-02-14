@@ -12,12 +12,7 @@ use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Stay\Database\Models\Hotels;
 use NextDeveloper\Stay\Database\Filters\HotelsQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Stay\Events\Hotels\HotelsCreatedEvent;
-use NextDeveloper\Stay\Events\Hotels\HotelsCreatingEvent;
-use NextDeveloper\Stay\Events\Hotels\HotelsUpdatedEvent;
-use NextDeveloper\Stay\Events\Hotels\HotelsUpdatingEvent;
-use NextDeveloper\Stay\Events\Hotels\HotelsDeletedEvent;
-use NextDeveloper\Stay\Events\Hotels\HotelsDeletingEvent;
+use NextDeveloper\Events\Services\Events;
 
 /**
  * This class is responsible from managing the data for Hotels
@@ -132,8 +127,6 @@ class AbstractHotelsService
      */
     public static function create(array $data)
     {
-        event(new HotelsCreatingEvent());
-
         if (array_key_exists('iam_account_id', $data)) {
             $data['iam_account_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\IAM\Database\Models\Accounts',
@@ -144,6 +137,12 @@ class AbstractHotelsService
             $data['iam_user_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\IAM\Database\Models\Users',
                 $data['iam_user_id']
+            );
+        }
+        if (array_key_exists('common_city_id', $data)) {
+            $data['common_city_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Cities',
+                $data['common_city_id']
             );
         }
         if (array_key_exists('common_country_id', $data)) {
@@ -165,22 +164,30 @@ class AbstractHotelsService
             );
         }
     
+        if(!array_key_exists('iam_account_id', $data)) {
+            $data['iam_account_id'] = UserHelper::currentAccount()->id;
+        }
+
+        if(!array_key_exists('iam_user_id', $data)) {
+            $data['iam_user_id']    = UserHelper::me()->id;
+        }
+
         try {
             $model = Hotels::create($data);
         } catch(\Exception $e) {
             throw $e;
         }
 
-        event(new HotelsCreatedEvent($model));
+        Events::fire('created:NextDeveloper\Stay\Hotels', $model);
 
         return $model->fresh();
     }
 
     /**
-     This function expects the ID inside the object.
-    
-     @param  array $data
-     @return Hotels
+     * This function expects the ID inside the object.
+     *
+     * @param  array $data
+     * @return Hotels
      */
     public static function updateRaw(array $data) : ?Hotels
     {
@@ -217,6 +224,12 @@ class AbstractHotelsService
                 $data['iam_user_id']
             );
         }
+        if (array_key_exists('common_city_id', $data)) {
+            $data['common_city_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Cities',
+                $data['common_city_id']
+            );
+        }
         if (array_key_exists('common_country_id', $data)) {
             $data['common_country_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Commons\Database\Models\Countries',
@@ -236,7 +249,7 @@ class AbstractHotelsService
             );
         }
     
-        event(new HotelsUpdatingEvent($model));
+        Events::fire('updating:NextDeveloper\Stay\Hotels', $model);
 
         try {
             $isUpdated = $model->update($data);
@@ -245,7 +258,7 @@ class AbstractHotelsService
             throw $e;
         }
 
-        event(new HotelsUpdatedEvent($model));
+        Events::fire('updated:NextDeveloper\Stay\Hotels', $model);
 
         return $model->fresh();
     }
@@ -264,7 +277,7 @@ class AbstractHotelsService
     {
         $model = Hotels::where('uuid', $id)->first();
 
-        event(new HotelsDeletingEvent());
+        Events::fire('deleted:NextDeveloper\Stay\Hotels', $model);
 
         try {
             $model = $model->delete();

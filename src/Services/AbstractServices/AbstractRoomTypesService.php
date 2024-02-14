@@ -12,12 +12,7 @@ use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Stay\Database\Models\RoomTypes;
 use NextDeveloper\Stay\Database\Filters\RoomTypesQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Stay\Events\RoomTypes\RoomTypesCreatedEvent;
-use NextDeveloper\Stay\Events\RoomTypes\RoomTypesCreatingEvent;
-use NextDeveloper\Stay\Events\RoomTypes\RoomTypesUpdatedEvent;
-use NextDeveloper\Stay\Events\RoomTypes\RoomTypesUpdatingEvent;
-use NextDeveloper\Stay\Events\RoomTypes\RoomTypesDeletedEvent;
-use NextDeveloper\Stay\Events\RoomTypes\RoomTypesDeletingEvent;
+use NextDeveloper\Events\Services\Events;
 
 /**
  * This class is responsible from managing the data for RoomTypes
@@ -132,8 +127,6 @@ class AbstractRoomTypesService
      */
     public static function create(array $data)
     {
-        event(new RoomTypesCreatingEvent());
-
         if (array_key_exists('stay_hotels_id', $data)) {
             $data['stay_hotels_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Stay\Database\Models\Hotels',
@@ -147,22 +140,30 @@ class AbstractRoomTypesService
             );
         }
     
+        if(!array_key_exists('iam_account_id', $data)) {
+            $data['iam_account_id'] = UserHelper::currentAccount()->id;
+        }
+
+        if(!array_key_exists('iam_user_id', $data)) {
+            $data['iam_user_id']    = UserHelper::me()->id;
+        }
+
         try {
             $model = RoomTypes::create($data);
         } catch(\Exception $e) {
             throw $e;
         }
 
-        event(new RoomTypesCreatedEvent($model));
+        Events::fire('created:NextDeveloper\Stay\RoomTypes', $model);
 
         return $model->fresh();
     }
 
     /**
-     This function expects the ID inside the object.
-    
-     @param  array $data
-     @return RoomTypes
+     * This function expects the ID inside the object.
+     *
+     * @param  array $data
+     * @return RoomTypes
      */
     public static function updateRaw(array $data) : ?RoomTypes
     {
@@ -200,7 +201,7 @@ class AbstractRoomTypesService
             );
         }
     
-        event(new RoomTypesUpdatingEvent($model));
+        Events::fire('updating:NextDeveloper\Stay\RoomTypes', $model);
 
         try {
             $isUpdated = $model->update($data);
@@ -209,7 +210,7 @@ class AbstractRoomTypesService
             throw $e;
         }
 
-        event(new RoomTypesUpdatedEvent($model));
+        Events::fire('updated:NextDeveloper\Stay\RoomTypes', $model);
 
         return $model->fresh();
     }
@@ -228,7 +229,7 @@ class AbstractRoomTypesService
     {
         $model = RoomTypes::where('uuid', $id)->first();
 
-        event(new RoomTypesDeletingEvent());
+        Events::fire('deleted:NextDeveloper\Stay\RoomTypes', $model);
 
         try {
             $model = $model->delete();

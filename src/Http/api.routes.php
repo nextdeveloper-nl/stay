@@ -20,6 +20,24 @@ Route::prefix('stay')->group(
             }
         );
 
+        Route::prefix('reservations')->group(
+            function () {
+                Route::get('/', 'Reservations\ReservationsController@index');
+
+                Route::get('{stay_reservations}/tags ', 'Reservations\ReservationsController@tags');
+                Route::post('{stay_reservations}/tags ', 'Reservations\ReservationsController@saveTags');
+                Route::get('{stay_reservations}/addresses ', 'Reservations\ReservationsController@addresses');
+                Route::post('{stay_reservations}/addresses ', 'Reservations\ReservationsController@saveAddresses');
+
+                Route::get('/{stay_reservations}/{subObjects}', 'Reservations\ReservationsController@relatedObjects');
+                Route::get('/{stay_reservations}', 'Reservations\ReservationsController@show');
+
+                Route::post('/', 'Reservations\ReservationsController@store');
+                Route::patch('/{stay_reservations}', 'Reservations\ReservationsController@update');
+                Route::delete('/{stay_reservations}', 'Reservations\ReservationsController@destroy');
+            }
+        );
+
         Route::prefix('room-types')->group(
             function () {
                 Route::get('/', 'RoomTypes\RoomTypesController@index');
@@ -56,25 +74,39 @@ Route::prefix('stay')->group(
             }
         );
 
-        Route::prefix('reservations')->group(
-            function () {
-                Route::get('/', 'Reservations\ReservationsController@index');
-
-                Route::get('{stay_reservations}/tags ', 'Reservations\ReservationsController@tags');
-                Route::post('{stay_reservations}/tags ', 'Reservations\ReservationsController@saveTags');
-                Route::get('{stay_reservations}/addresses ', 'Reservations\ReservationsController@addresses');
-                Route::post('{stay_reservations}/addresses ', 'Reservations\ReservationsController@saveAddresses');
-
-                Route::get('/{stay_reservations}/{subObjects}', 'Reservations\ReservationsController@relatedObjects');
-                Route::get('/{stay_reservations}', 'Reservations\ReservationsController@show');
-
-                Route::post('/', 'Reservations\ReservationsController@store');
-                Route::patch('/{stay_reservations}', 'Reservations\ReservationsController@update');
-                Route::delete('/{stay_reservations}', 'Reservations\ReservationsController@destroy');
-            }
-        );
-
         // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,3 +126,11 @@ Route::prefix('stay')->group(
 
     }
 );
+
+
+
+
+
+
+
+
