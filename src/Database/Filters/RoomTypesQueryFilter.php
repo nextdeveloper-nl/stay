@@ -12,6 +12,7 @@ use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
  */
 class RoomTypesQueryFilter extends AbstractQueryFilter
 {
+
     /**
      * @var Builder
      */
@@ -27,32 +28,32 @@ class RoomTypesQueryFilter extends AbstractQueryFilter
         return $this->builder->where('description', 'like', '%' . $value . '%');
     }
 
-    public function createdAtStart($date) 
+    public function createdAtStart($date)
     {
         return $this->builder->where('created_at', '>=', $date);
     }
 
-    public function createdAtEnd($date) 
+    public function createdAtEnd($date)
     {
         return $this->builder->where('created_at', '<=', $date);
     }
 
-    public function updatedAtStart($date) 
+    public function updatedAtStart($date)
     {
         return $this->builder->where('updated_at', '>=', $date);
     }
 
-    public function updatedAtEnd($date) 
+    public function updatedAtEnd($date)
     {
         return $this->builder->where('updated_at', '<=', $date);
     }
 
-    public function deletedAtStart($date) 
+    public function deletedAtStart($date)
     {
         return $this->builder->where('deleted_at', '>=', $date);
     }
 
-    public function deletedAtEnd($date) 
+    public function deletedAtEnd($date)
     {
         return $this->builder->where('deleted_at', '<=', $date);
     }
@@ -76,4 +77,24 @@ class RoomTypesQueryFilter extends AbstractQueryFilter
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -161,4 +161,27 @@ class Reservations extends Model
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

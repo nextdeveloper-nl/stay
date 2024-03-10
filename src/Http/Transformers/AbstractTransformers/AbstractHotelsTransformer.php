@@ -24,8 +24,8 @@ class AbstractHotelsTransformer extends AbstractTransformer
                     $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
                     $commonCityId = \NextDeveloper\Commons\Database\Models\Cities::where('id', $model->common_city_id)->first();
                     $commonCountryId = \NextDeveloper\Commons\Database\Models\Countries::where('id', $model->common_country_id)->first();
-                    $foregroundMediaId = \NextDeveloper\\Database\Models\ForegroundMedia::where('id', $model->foreground_media_id)->first();
-                    $backgroundMediaId = \NextDeveloper\\Database\Models\BackgroundMedia::where('id', $model->background_media_id)->first();
+                    $foregroundMediaId = \NextDeveloper\Commons\Database\Models\Media::where('id', $model->foreground_media_id)->first();
+                    $backgroundMediaId = \NextDeveloper\Commons\Database\Models\Media::where('id', $model->background_media_id)->first();
         
         return $this->buildPayload(
             [
@@ -47,23 +47,12 @@ class AbstractHotelsTransformer extends AbstractTransformer
             'created_at'  =>  $model->created_at,
             'updated_at'  =>  $model->updated_at,
             'deleted_at'  =>  $model->deleted_at,
+            'is_public'  =>  $model->is_public,
             ]
         );
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
