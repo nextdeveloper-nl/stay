@@ -160,4 +160,27 @@ class RoomTypes extends Model
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

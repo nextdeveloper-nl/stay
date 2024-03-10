@@ -153,13 +153,13 @@ class AbstractHotelsService
         }
         if (array_key_exists('foreground_media_id', $data)) {
             $data['foreground_media_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\ForegroundMedia',
+                '\NextDeveloper\Commons\Database\Models\Media',
                 $data['foreground_media_id']
             );
         }
         if (array_key_exists('background_media_id', $data)) {
             $data['background_media_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\BackgroundMedia',
+                '\NextDeveloper\Commons\Database\Models\Media',
                 $data['background_media_id']
             );
         }
@@ -238,13 +238,13 @@ class AbstractHotelsService
         }
         if (array_key_exists('foreground_media_id', $data)) {
             $data['foreground_media_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\ForegroundMedia',
+                '\NextDeveloper\Commons\Database\Models\Media',
                 $data['foreground_media_id']
             );
         }
         if (array_key_exists('background_media_id', $data)) {
             $data['background_media_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\BackgroundMedia',
+                '\NextDeveloper\Commons\Database\Models\Media',
                 $data['background_media_id']
             );
         }

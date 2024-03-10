@@ -34,6 +34,7 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
+ * @property boolean $is_public
  */
 class Hotels extends Model
 {
@@ -66,6 +67,7 @@ class Hotels extends Model
             'background_media_id',
             'latitude',
             'longitude',
+            'is_public',
     ];
 
     /**
@@ -104,6 +106,7 @@ class Hotels extends Model
     'created_at' => 'datetime',
     'updated_at' => 'datetime',
     'deleted_at' => 'datetime',
+    'is_public' => 'boolean',
     ];
 
     /**
@@ -165,6 +168,15 @@ class Hotels extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
+
+
+
+
+
+
+
+
 
 
 

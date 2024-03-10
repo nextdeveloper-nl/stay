@@ -12,6 +12,7 @@ use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
  */
 class HotelsQueryFilter extends AbstractQueryFilter
 {
+
     /**
      * @var Builder
      */
@@ -52,32 +53,37 @@ class HotelsQueryFilter extends AbstractQueryFilter
         return $this->builder->where('longitude', 'like', '%' . $value . '%');
     }
 
-    public function createdAtStart($date) 
+    public function isPublic()
+    {
+        return $this->builder->where('is_public', true);
+    }
+
+    public function createdAtStart($date)
     {
         return $this->builder->where('created_at', '>=', $date);
     }
 
-    public function createdAtEnd($date) 
+    public function createdAtEnd($date)
     {
         return $this->builder->where('created_at', '<=', $date);
     }
 
-    public function updatedAtStart($date) 
+    public function updatedAtStart($date)
     {
         return $this->builder->where('updated_at', '>=', $date);
     }
 
-    public function updatedAtEnd($date) 
+    public function updatedAtEnd($date)
     {
         return $this->builder->where('updated_at', '<=', $date);
     }
 
-    public function deletedAtStart($date) 
+    public function deletedAtStart($date)
     {
         return $this->builder->where('deleted_at', '>=', $date);
     }
 
-    public function deletedAtEnd($date) 
+    public function deletedAtEnd($date)
     {
         return $this->builder->where('deleted_at', '<=', $date);
     }
@@ -120,7 +126,7 @@ class HotelsQueryFilter extends AbstractQueryFilter
 
     public function foregroundMediaId($value)
     {
-            $foregroundMedia = \NextDeveloper\\Database\Models\ForegroundMedia::where('uuid', $value)->first();
+            $foregroundMedia = \NextDeveloper\Commons\Database\Models\Media::where('uuid', $value)->first();
 
         if($foregroundMedia) {
             return $this->builder->where('foreground_media_id', '=', $foregroundMedia->id);
@@ -129,7 +135,7 @@ class HotelsQueryFilter extends AbstractQueryFilter
 
     public function backgroundMediaId($value)
     {
-            $backgroundMedia = \NextDeveloper\\Database\Models\BackgroundMedia::where('uuid', $value)->first();
+            $backgroundMedia = \NextDeveloper\Commons\Database\Models\Media::where('uuid', $value)->first();
 
         if($backgroundMedia) {
             return $this->builder->where('background_media_id', '=', $backgroundMedia->id);
@@ -137,6 +143,13 @@ class HotelsQueryFilter extends AbstractQueryFilter
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n
+
+
+
+
+
+
+
 
 
 }
