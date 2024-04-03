@@ -11,13 +11,13 @@ use NextDeveloper\IAM\Authorization\Roles\IAuthorizationRole;
 use NextDeveloper\IAM\Database\Models\Users;
 use NextDeveloper\IAM\Helpers\UserHelper;
 
-class StayAdminRole extends AbstractRole implements IAuthorizationRole
+class StayUserRole extends AbstractRole implements IAuthorizationRole
 {
-    public const NAME = 'stay-admin';
+    public const NAME = 'stay-user';
 
-    public const LEVEL = 100;
+    public const LEVEL = 150;
 
-    public const DESCRIPTION = 'Stay Admin';
+    public const DESCRIPTION = 'Stay module user role. This role is required to access hotels, room types and rooms in general. Also to make subscriptions.';
 
     public const DB_PREFIX = 'stay';
 
@@ -33,11 +33,7 @@ class StayAdminRole extends AbstractRole implements IAuthorizationRole
         /**
          * Here user will be able to list all models, because by default, sales manager can see everybody.
          */
-        $ids = AccountManagers::withoutGlobalScopes()
-            ->where('iam_account_id', UserHelper::currentAccount()->id)
-            ->pluck('crm_account_id');
 
-        $builder->whereIn('iam_account_id', $ids);
     }
 
     public function checkPrivileges(Users $users = null)
@@ -54,21 +50,11 @@ class StayAdminRole extends AbstractRole implements IAuthorizationRole
     {
         return [
             'stay_hotels:read',
-            'stay_hotels:update',
-            'stay_hotels:create',
-            'stay_hotels:delete',
             'stay_rooms:read',
-            'stay_rooms:update',
-            'stay_rooms:create',
-            'stay_rooms:delete',
             'stay_room_types:read',
-            'stay_room_types:update',
-            'stay_room_types:create',
-            'stay_room_types:delete',
             'stay_reservations:read',
             'stay_reservations:update',
             'stay_reservations:create',
-            'stay_reservations:delete',
             'stay_reservations:checkin',
             'stay_reservations:checkout',
             'stay_reservations:cancel',
@@ -82,9 +68,6 @@ class StayAdminRole extends AbstractRole implements IAuthorizationRole
             'stay_reservations:change',
             'stay_reservations:unchange',
             'stay_room_prices:read',
-            'stay_room_prices:update',
-            'stay_room_prices:create',
-            'stay_room_prices:delete',
         ];
     }
 
