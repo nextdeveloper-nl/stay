@@ -15,7 +15,7 @@ class StayAdminRole extends AbstractRole implements IAuthorizationRole
 {
     public const NAME = 'stay-admin';
 
-    public const LEVEL = 50;
+    public const LEVEL = 100;
 
     public const DESCRIPTION = 'Stay Admin';
 

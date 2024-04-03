@@ -15,7 +15,7 @@ class StayUserRole extends AbstractRole implements IAuthorizationRole
 {
     public const NAME = 'stay-user';
 
-    public const LEVEL = 50;
+    public const LEVEL = 150;
 
     public const DESCRIPTION = 'Stay module user role. This role is required to access hotels, room types and rooms in general. Also to make subscriptions.';
 
