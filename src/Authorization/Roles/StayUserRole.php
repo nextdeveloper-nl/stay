@@ -33,7 +33,7 @@ class StayUserRole extends AbstractRole implements IAuthorizationRole
         $builder->where([
             'iam_account_id'    =>  UserHelper::currentAccount()->id,
             'iam_user_id'       =>  UserHelper::me()->id
-        ]);
+        ])->orWhere('is_public', true);
     }
 
     public function checkPrivileges(Users $users = null)
