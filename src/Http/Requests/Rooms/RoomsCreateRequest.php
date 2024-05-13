@@ -17,6 +17,7 @@ class RoomsCreateRequest extends AbstractFormRequest
         'features' => 'nullable',
         'stay_hotels_id' => 'nullable|exists:stay_hotels,uuid|uuid',
         'stay_room_type_id' => 'nullable|exists:stay_room_types,uuid|uuid',
+        'is_public' => 'boolean',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
