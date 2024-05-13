@@ -19,6 +19,7 @@ class RoomTypesUpdateRequest extends AbstractFormRequest
         'facilities' => 'nullable',
         'price' => 'nullable',
         'common_currency_id' => 'nullable|exists:common_currencies,uuid|uuid',
+        'is_public' => 'boolean',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
