@@ -38,6 +38,6 @@ class HotelsTransformer extends AbstractHotelsTransformer
             $transformed
         );
 
-        return parent::transform($model);
+        return $transformed;
     }
 }

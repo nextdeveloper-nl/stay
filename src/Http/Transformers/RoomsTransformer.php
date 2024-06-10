@@ -38,6 +38,6 @@ class RoomsTransformer extends AbstractRoomsTransformer
             $transformed
         );
 
-        return parent::transform($model);
+        return $transformed;
     }
 }
