@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                        
+                                    
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,6 +17,11 @@ class HotelsQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
+    
+    public function externalId($value)
+    {
+        return $this->builder->where('external_id', 'like', '%' . $value . '%');
+    }
     
     public function name($value)
     {
@@ -53,9 +58,13 @@ class HotelsQueryFilter extends AbstractQueryFilter
         return $this->builder->where('longitude', 'like', '%' . $value . '%');
     }
 
-    public function isPublic()
+    public function isPublic($value)
     {
-        return $this->builder->where('is_public', true);
+        if(!is_bool($value)) {
+            $value = false;
+        }
+
+        return $this->builder->where('is_public', $value);
     }
 
     public function createdAtStart($date)
@@ -88,21 +97,12 @@ class HotelsQueryFilter extends AbstractQueryFilter
         return $this->builder->where('deleted_at', '<=', $date);
     }
 
-    public function iamAccountId($value)
+    public function externalId($value)
     {
-            $iamAccount = \NextDeveloper\IAM\Database\Models\Accounts::where('uuid', $value)->first();
+            $external = \NextDeveloper\\Database\Models\Externals::where('uuid', $value)->first();
 
-        if($iamAccount) {
-            return $this->builder->where('iam_account_id', '=', $iamAccount->id);
-        }
-    }
-
-    public function iamUserId($value)
-    {
-            $iamUser = \NextDeveloper\IAM\Database\Models\Users::where('uuid', $value)->first();
-
-        if($iamUser) {
-            return $this->builder->where('iam_user_id', '=', $iamUser->id);
+        if($external) {
+            return $this->builder->where('external_id', '=', $external->id);
         }
     }
 
@@ -124,6 +124,15 @@ class HotelsQueryFilter extends AbstractQueryFilter
         }
     }
 
+    public function commonCurrencyId($value)
+    {
+            $commonCurrency = \NextDeveloper\Commons\Database\Models\Currencies::where('uuid', $value)->first();
+
+        if($commonCurrency) {
+            return $this->builder->where('common_currency_id', '=', $commonCurrency->id);
+        }
+    }
+
     public function foregroundMediaId($value)
     {
             $foregroundMedia = \NextDeveloper\Commons\Database\Models\Media::where('uuid', $value)->first();
@@ -142,7 +151,36 @@ class HotelsQueryFilter extends AbstractQueryFilter
         }
     }
 
+    public function stayProviderId($value)
+    {
+            $stayProvider = \NextDeveloper\Stay\Database\Models\Providers::where('uuid', $value)->first();
+
+        if($stayProvider) {
+            return $this->builder->where('stay_provider_id', '=', $stayProvider->id);
+        }
+    }
+
+    public function iamAccountId($value)
+    {
+            $iamAccount = \NextDeveloper\IAM\Database\Models\Accounts::where('uuid', $value)->first();
+
+        if($iamAccount) {
+            return $this->builder->where('iam_account_id', '=', $iamAccount->id);
+        }
+    }
+
+    public function iamUserId($value)
+    {
+            $iamUser = \NextDeveloper\IAM\Database\Models\Users::where('uuid', $value)->first();
+
+        if($iamUser) {
+            return $this->builder->where('iam_user_id', '=', $iamUser->id);
+        }
+    }
+
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n
+
+
 
 
 

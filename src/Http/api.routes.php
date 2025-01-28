@@ -2,6 +2,48 @@
 
 Route::prefix('stay')->group(
     function () {
+        Route::prefix('providers')->group(
+            function () {
+                Route::get('/', 'Providers\ProvidersController@index');
+                Route::get('/actions', 'Providers\ProvidersController@getActions');
+
+                Route::get('{stay_providers}/tags ', 'Providers\ProvidersController@tags');
+                Route::post('{stay_providers}/tags ', 'Providers\ProvidersController@saveTags');
+                Route::get('{stay_providers}/addresses ', 'Providers\ProvidersController@addresses');
+                Route::post('{stay_providers}/addresses ', 'Providers\ProvidersController@saveAddresses');
+
+                Route::get('/{stay_providers}/{subObjects}', 'Providers\ProvidersController@relatedObjects');
+                Route::get('/{stay_providers}', 'Providers\ProvidersController@show');
+
+                Route::post('/', 'Providers\ProvidersController@store');
+                Route::post('/{stay_providers}/do/{action}', 'Providers\ProvidersController@doAction');
+
+                Route::patch('/{stay_providers}', 'Providers\ProvidersController@update');
+                Route::delete('/{stay_providers}', 'Providers\ProvidersController@destroy');
+            }
+        );
+
+        Route::prefix('hotels')->group(
+            function () {
+                Route::get('/', 'Hotels\HotelsController@index');
+                Route::get('/actions', 'Hotels\HotelsController@getActions');
+
+                Route::get('{stay_hotels}/tags ', 'Hotels\HotelsController@tags');
+                Route::post('{stay_hotels}/tags ', 'Hotels\HotelsController@saveTags');
+                Route::get('{stay_hotels}/addresses ', 'Hotels\HotelsController@addresses');
+                Route::post('{stay_hotels}/addresses ', 'Hotels\HotelsController@saveAddresses');
+
+                Route::get('/{stay_hotels}/{subObjects}', 'Hotels\HotelsController@relatedObjects');
+                Route::get('/{stay_hotels}', 'Hotels\HotelsController@show');
+
+                Route::post('/', 'Hotels\HotelsController@store');
+                Route::post('/{stay_hotels}/do/{action}', 'Hotels\HotelsController@doAction');
+
+                Route::patch('/{stay_hotels}', 'Hotels\HotelsController@update');
+                Route::delete('/{stay_hotels}', 'Hotels\HotelsController@destroy');
+            }
+        );
+
         Route::prefix('room-types')->group(
             function () {
                 Route::get('/', 'RoomTypes\RoomTypesController@index');
@@ -44,6 +86,27 @@ Route::prefix('stay')->group(
             }
         );
 
+        Route::prefix('tarif-types')->group(
+            function () {
+                Route::get('/', 'TarifTypes\TarifTypesController@index');
+                Route::get('/actions', 'TarifTypes\TarifTypesController@getActions');
+
+                Route::get('{stay_tarif_types}/tags ', 'TarifTypes\TarifTypesController@tags');
+                Route::post('{stay_tarif_types}/tags ', 'TarifTypes\TarifTypesController@saveTags');
+                Route::get('{stay_tarif_types}/addresses ', 'TarifTypes\TarifTypesController@addresses');
+                Route::post('{stay_tarif_types}/addresses ', 'TarifTypes\TarifTypesController@saveAddresses');
+
+                Route::get('/{stay_tarif_types}/{subObjects}', 'TarifTypes\TarifTypesController@relatedObjects');
+                Route::get('/{stay_tarif_types}', 'TarifTypes\TarifTypesController@show');
+
+                Route::post('/', 'TarifTypes\TarifTypesController@store');
+                Route::post('/{stay_tarif_types}/do/{action}', 'TarifTypes\TarifTypesController@doAction');
+
+                Route::patch('/{stay_tarif_types}', 'TarifTypes\TarifTypesController@update');
+                Route::delete('/{stay_tarif_types}', 'TarifTypes\TarifTypesController@destroy');
+            }
+        );
+
         Route::prefix('reservations')->group(
             function () {
                 Route::get('/', 'Reservations\ReservationsController@index');
@@ -65,24 +128,150 @@ Route::prefix('stay')->group(
             }
         );
 
+        Route::prefix('main-purchase-contracts')->group(
+            function () {
+                Route::get('/', 'MainPurchaseContracts\MainPurchaseContractsController@index');
+                Route::get('/actions', 'MainPurchaseContracts\MainPurchaseContractsController@getActions');
+
+                Route::get('{stay_main_purchase_contracts}/tags ', 'MainPurchaseContracts\MainPurchaseContractsController@tags');
+                Route::post('{stay_main_purchase_contracts}/tags ', 'MainPurchaseContracts\MainPurchaseContractsController@saveTags');
+                Route::get('{stay_main_purchase_contracts}/addresses ', 'MainPurchaseContracts\MainPurchaseContractsController@addresses');
+                Route::post('{stay_main_purchase_contracts}/addresses ', 'MainPurchaseContracts\MainPurchaseContractsController@saveAddresses');
+
+                Route::get('/{stay_main_purchase_contracts}/{subObjects}', 'MainPurchaseContracts\MainPurchaseContractsController@relatedObjects');
+                Route::get('/{stay_main_purchase_contracts}', 'MainPurchaseContracts\MainPurchaseContractsController@show');
+
+                Route::post('/', 'MainPurchaseContracts\MainPurchaseContractsController@store');
+                Route::post('/{stay_main_purchase_contracts}/do/{action}', 'MainPurchaseContracts\MainPurchaseContractsController@doAction');
+
+                Route::patch('/{stay_main_purchase_contracts}', 'MainPurchaseContracts\MainPurchaseContractsController@update');
+                Route::delete('/{stay_main_purchase_contracts}', 'MainPurchaseContracts\MainPurchaseContractsController@destroy');
+            }
+        );
+
+        Route::prefix('sales-contracts')->group(
+            function () {
+                Route::get('/', 'SalesContracts\SalesContractsController@index');
+                Route::get('/actions', 'SalesContracts\SalesContractsController@getActions');
+
+                Route::get('{stay_sales_contracts}/tags ', 'SalesContracts\SalesContractsController@tags');
+                Route::post('{stay_sales_contracts}/tags ', 'SalesContracts\SalesContractsController@saveTags');
+                Route::get('{stay_sales_contracts}/addresses ', 'SalesContracts\SalesContractsController@addresses');
+                Route::post('{stay_sales_contracts}/addresses ', 'SalesContracts\SalesContractsController@saveAddresses');
+
+                Route::get('/{stay_sales_contracts}/{subObjects}', 'SalesContracts\SalesContractsController@relatedObjects');
+                Route::get('/{stay_sales_contracts}', 'SalesContracts\SalesContractsController@show');
+
+                Route::post('/', 'SalesContracts\SalesContractsController@store');
+                Route::post('/{stay_sales_contracts}/do/{action}', 'SalesContracts\SalesContractsController@doAction');
+
+                Route::patch('/{stay_sales_contracts}', 'SalesContracts\SalesContractsController@update');
+                Route::delete('/{stay_sales_contracts}', 'SalesContracts\SalesContractsController@destroy');
+            }
+        );
+
+        Route::prefix('quota-contracts')->group(
+            function () {
+                Route::get('/', 'QuotaContracts\QuotaContractsController@index');
+                Route::get('/actions', 'QuotaContracts\QuotaContractsController@getActions');
+
+                Route::get('{stay_quota_contracts}/tags ', 'QuotaContracts\QuotaContractsController@tags');
+                Route::post('{stay_quota_contracts}/tags ', 'QuotaContracts\QuotaContractsController@saveTags');
+                Route::get('{stay_quota_contracts}/addresses ', 'QuotaContracts\QuotaContractsController@addresses');
+                Route::post('{stay_quota_contracts}/addresses ', 'QuotaContracts\QuotaContractsController@saveAddresses');
+
+                Route::get('/{stay_quota_contracts}/{subObjects}', 'QuotaContracts\QuotaContractsController@relatedObjects');
+                Route::get('/{stay_quota_contracts}', 'QuotaContracts\QuotaContractsController@show');
+
+                Route::post('/', 'QuotaContracts\QuotaContractsController@store');
+                Route::post('/{stay_quota_contracts}/do/{action}', 'QuotaContracts\QuotaContractsController@doAction');
+
+                Route::patch('/{stay_quota_contracts}', 'QuotaContracts\QuotaContractsController@update');
+                Route::delete('/{stay_quota_contracts}', 'QuotaContracts\QuotaContractsController@destroy');
+            }
+        );
+
+        Route::prefix('hotel-contracts')->group(
+            function () {
+                Route::get('/', 'HotelContracts\HotelContractsController@index');
+                Route::get('/actions', 'HotelContracts\HotelContractsController@getActions');
+
+                Route::get('{stay_hotel_contracts}/tags ', 'HotelContracts\HotelContractsController@tags');
+                Route::post('{stay_hotel_contracts}/tags ', 'HotelContracts\HotelContractsController@saveTags');
+                Route::get('{stay_hotel_contracts}/addresses ', 'HotelContracts\HotelContractsController@addresses');
+                Route::post('{stay_hotel_contracts}/addresses ', 'HotelContracts\HotelContractsController@saveAddresses');
+
+                Route::get('/{stay_hotel_contracts}/{subObjects}', 'HotelContracts\HotelContractsController@relatedObjects');
+                Route::get('/{stay_hotel_contracts}', 'HotelContracts\HotelContractsController@show');
+
+                Route::post('/', 'HotelContracts\HotelContractsController@store');
+                Route::post('/{stay_hotel_contracts}/do/{action}', 'HotelContracts\HotelContractsController@doAction');
+
+                Route::patch('/{stay_hotel_contracts}', 'HotelContracts\HotelContractsController@update');
+                Route::delete('/{stay_hotel_contracts}', 'HotelContracts\HotelContractsController@destroy');
+            }
+        );
+
+        Route::prefix('rates')->group(
+            function () {
+                Route::get('/', 'Rates\RatesController@index');
+                Route::get('/actions', 'Rates\RatesController@getActions');
+
+                Route::get('{stay_rates}/tags ', 'Rates\RatesController@tags');
+                Route::post('{stay_rates}/tags ', 'Rates\RatesController@saveTags');
+                Route::get('{stay_rates}/addresses ', 'Rates\RatesController@addresses');
+                Route::post('{stay_rates}/addresses ', 'Rates\RatesController@saveAddresses');
+
+                Route::get('/{stay_rates}/{subObjects}', 'Rates\RatesController@relatedObjects');
+                Route::get('/{stay_rates}', 'Rates\RatesController@show');
+
+                Route::post('/', 'Rates\RatesController@store');
+                Route::post('/{stay_rates}/do/{action}', 'Rates\RatesController@doAction');
+
+                Route::patch('/{stay_rates}', 'Rates\RatesController@update');
+                Route::delete('/{stay_rates}', 'Rates\RatesController@destroy');
+            }
+        );
+
+        Route::prefix('rate-prices')->group(
+            function () {
+                Route::get('/', 'RatePrices\RatePricesController@index');
+                Route::get('/actions', 'RatePrices\RatePricesController@getActions');
+
+                Route::get('{stay_rate_prices}/tags ', 'RatePrices\RatePricesController@tags');
+                Route::post('{stay_rate_prices}/tags ', 'RatePrices\RatePricesController@saveTags');
+                Route::get('{stay_rate_prices}/addresses ', 'RatePrices\RatePricesController@addresses');
+                Route::post('{stay_rate_prices}/addresses ', 'RatePrices\RatePricesController@saveAddresses');
+
+                Route::get('/{stay_rate_prices}/{subObjects}', 'RatePrices\RatePricesController@relatedObjects');
+                Route::get('/{stay_rate_prices}', 'RatePrices\RatePricesController@show');
+
+                Route::post('/', 'RatePrices\RatePricesController@store');
+                Route::post('/{stay_rate_prices}/do/{action}', 'RatePrices\RatePricesController@doAction');
+
+                Route::patch('/{stay_rate_prices}', 'RatePrices\RatePricesController@update');
+                Route::delete('/{stay_rate_prices}', 'RatePrices\RatePricesController@destroy');
+            }
+        );
+
+        // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         Route::prefix('hotels')->group(
             function () {
-                Route::get('/', 'Hotels\HotelsController@index');
-                Route::get('/actions', 'Hotels\HotelsController@getActions');
-
-                Route::get('{stay_hotels}/tags ', 'Hotels\HotelsController@tags');
-                Route::post('{stay_hotels}/tags ', 'Hotels\HotelsController@saveTags');
-                Route::get('{stay_hotels}/addresses ', 'Hotels\HotelsController@addresses');
-                Route::post('{stay_hotels}/addresses ', 'Hotels\HotelsController@saveAddresses');
-
-                Route::get('/{stay_hotels}/{subObjects}', 'Hotels\HotelsController@relatedObjects');
-                Route::get('/{stay_hotels}', 'Hotels\HotelsController@show');
-
-                Route::post('/', 'Hotels\HotelsController@store');
-                Route::post('/{stay_hotels}/do/{action}', 'Hotels\HotelsController@doAction');
-
-                Route::patch('/{stay_hotels}', 'Hotels\HotelsController@update');
-                Route::delete('/{stay_hotels}', 'Hotels\HotelsController@destroy');
+                Route::get('external/{externalId}/show', 'Hotels\HotelsController@getByExternalId');
             }
         );
 
@@ -218,13 +407,8 @@ Route::prefix('stay')->group(
 
 
 
-
-
-
-
     }
 );
-
 
 
 

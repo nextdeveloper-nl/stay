@@ -17,10 +17,71 @@ class RoomsQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
-    public function name($value)
+
+    public function displayOrder($value)
     {
-        return $this->builder->where('name', 'like', '%' . $value . '%');
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('display_order', $operator, $value);
+    }
+
+    public function minChildAge($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('min_child_age', $operator, $value);
+    }
+
+    public function maxInfants($value)
+    {
+        $operator = substr($value, 0, 1);
+
+        if ($operator != '<' || $operator != '>') {
+            $operator = '=';
+        } else {
+            $value = substr($value, 1);
+        }
+
+        return $this->builder->where('max_infants', $operator, $value);
+    }
+
+    public function isNonRefundable($value)
+    {
+        if(!is_bool($value)) {
+            $value = false;
+        }
+
+        return $this->builder->where('is_non_refundable', $value);
+    }
+
+    public function isActive($value)
+    {
+        if(!is_bool($value)) {
+            $value = false;
+        }
+
+        return $this->builder->where('is_active', $value);
+    }
+
+    public function isHiddenInAllotment($value)
+    {
+        if(!is_bool($value)) {
+            $value = false;
+        }
+
+        return $this->builder->where('is_hidden_in_allotment', $value);
     }
 
     public function isPublic()
@@ -58,12 +119,12 @@ class RoomsQueryFilter extends AbstractQueryFilter
         return $this->builder->where('deleted_at', '<=', $date);
     }
 
-    public function stayHotelsId($value)
+    public function stayHotelId($value)
     {
-            $stayHotels = \NextDeveloper\Stay\Database\Models\Hotels::where('uuid', $value)->first();
+            $stayHotel = \NextDeveloper\Stay\Database\Models\Hotels::where('uuid', $value)->first();
 
-        if($stayHotels) {
-            return $this->builder->where('stay_hotels_id', '=', $stayHotels->id);
+        if($stayHotel) {
+            return $this->builder->where('stay_hotel_id', '=', $stayHotel->id);
         }
     }
 
@@ -77,6 +138,8 @@ class RoomsQueryFilter extends AbstractQueryFilter
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n
+
+
 
 
 

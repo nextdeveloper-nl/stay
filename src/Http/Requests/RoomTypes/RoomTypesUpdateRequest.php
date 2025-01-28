@@ -13,12 +13,18 @@ class RoomTypesUpdateRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'stay_hotels_id' => 'nullable|exists:stay_hotels,uuid|uuid',
+            'external_id' => 'nullable|string|exists:externals,uuid|uuid',
         'name' => 'nullable|string',
         'description' => 'nullable|string',
-        'facilities' => 'nullable',
-        'price' => 'nullable',
-        'common_currency_id' => 'nullable|exists:common_currencies,uuid|uuid',
+        'number_adults' => 'integer',
+        'number_children' => 'integer',
+        'capacity_max' => 'nullable|integer',
+        'capacity_min' => 'integer',
+        'is_active' => 'boolean',
+        'is_visible_extranet' => 'boolean',
+        'is_package_enabled' => 'boolean',
+        'is_cruise_enabled' => 'boolean',
+        'display_order' => 'nullable|integer',
         'is_public' => 'boolean',
         ];
     }
