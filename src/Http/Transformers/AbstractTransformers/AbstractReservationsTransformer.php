@@ -58,7 +58,7 @@ class AbstractReservationsTransformer extends AbstractTransformer
                                                             $stayRoomId = \NextDeveloper\Stay\Database\Models\Rooms::where('id', $model->stay_room_id)->first();
                                                             $stayRoomTypeId = \NextDeveloper\Stay\Database\Models\RoomTypes::where('id', $model->stay_room_type_id)->first();
                                                             $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
-
+                        
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
@@ -159,6 +159,8 @@ class AbstractReservationsTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
+
 
 
 

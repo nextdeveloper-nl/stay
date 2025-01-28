@@ -34,7 +34,6 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
- * @property boolean $is_public
  */
 class RoomTypes extends Model
 {
@@ -67,7 +66,6 @@ class RoomTypes extends Model
             'display_order',
             'iam_account_id',
             'iam_user_id',
-            'is_public',
     ];
 
     /**
@@ -106,7 +104,6 @@ class RoomTypes extends Model
     'created_at' => 'datetime',
     'updated_at' => 'datetime',
     'deleted_at' => 'datetime',
-    'is_public' => 'boolean',
     ];
 
     /**
@@ -168,6 +165,8 @@ class RoomTypes extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
+
 
 
 

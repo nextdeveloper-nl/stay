@@ -25,7 +25,6 @@ class RoomTypesCreateRequest extends AbstractFormRequest
         'is_package_enabled' => 'boolean',
         'is_cruise_enabled' => 'boolean',
         'display_order' => 'nullable|integer',
-        'is_public' => 'boolean',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
