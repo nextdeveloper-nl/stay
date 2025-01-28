@@ -212,6 +212,7 @@ class AbstractHotelsService
     {
         $model = Hotels::where('uuid', $id)->first();
 
+
         if (array_key_exists('iam_account_id', $data)) {
             $data['iam_account_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\IAM\Database\Models\Accounts',

@@ -17,12 +17,20 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  * @package  NextDeveloper\Stay\Database\Models
  * @property integer $id
  * @property string $uuid
- * @property integer $stay_hotels_id
+ * @property string $external_id
  * @property string $name
  * @property string $description
- * @property $facilities
- * @property $price
- * @property integer $common_currency_id
+ * @property integer $number_adults
+ * @property integer $number_children
+ * @property integer $capacity_max
+ * @property integer $capacity_min
+ * @property boolean $is_active
+ * @property boolean $is_visible_extranet
+ * @property boolean $is_package_enabled
+ * @property boolean $is_cruise_enabled
+ * @property integer $display_order
+ * @property integer $iam_account_id
+ * @property integer $iam_user_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
@@ -45,12 +53,20 @@ class RoomTypes extends Model
     protected $guarded = [];
 
     protected $fillable = [
-            'stay_hotels_id',
+            'external_id',
             'name',
             'description',
-            'facilities',
-            'price',
-            'common_currency_id',
+            'number_adults',
+            'number_children',
+            'capacity_max',
+            'capacity_min',
+            'is_active',
+            'is_visible_extranet',
+            'is_package_enabled',
+            'is_cruise_enabled',
+            'display_order',
+            'iam_account_id',
+            'iam_user_id',
             'is_public',
     ];
 
@@ -75,11 +91,18 @@ class RoomTypes extends Model
      */
     protected $casts = [
     'id' => 'integer',
-    'stay_hotels_id' => 'integer',
+    'external_id' => 'string',
     'name' => 'string',
     'description' => 'string',
-    'facilities' => 'array',
-    'common_currency_id' => 'integer',
+    'number_adults' => 'integer',
+    'number_children' => 'integer',
+    'capacity_max' => 'integer',
+    'capacity_min' => 'integer',
+    'is_active' => 'boolean',
+    'is_visible_extranet' => 'boolean',
+    'is_package_enabled' => 'boolean',
+    'is_cruise_enabled' => 'boolean',
+    'display_order' => 'integer',
     'created_at' => 'datetime',
     'updated_at' => 'datetime',
     'deleted_at' => 'datetime',
@@ -145,6 +168,8 @@ class RoomTypes extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
+
 
 
 

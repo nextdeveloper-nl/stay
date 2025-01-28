@@ -58,8 +58,14 @@ trait StayRoomTypeTestTraits
         $response = $this->http->request(
             'POST', '/stay/stayroomtype', [
             'form_params'   =>  [
+                'external_id'  =>  'a',
                 'name'  =>  'a',
                 'description'  =>  'a',
+                'number_adults'  =>  '1',
+                'number_children'  =>  '1',
+                'capacity_max'  =>  '1',
+                'capacity_min'  =>  '1',
+                'display_order'  =>  '1',
                             ],
                 ['http_errors' => false]
             ]
@@ -342,6 +348,25 @@ trait StayRoomTypeTestTraits
         $this->assertTrue(true);
     }
 
+    public function test_stayroomtype_event_external_id_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'external_id'  =>  'a'
+                ]
+            );
+
+            $filter = new StayRoomTypeQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoomType::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
     public function test_stayroomtype_event_name_filter()
     {
         try {
@@ -367,6 +392,101 @@ trait StayRoomTypeTestTraits
             $request = new Request(
                 [
                 'description'  =>  'a'
+                ]
+            );
+
+            $filter = new StayRoomTypeQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoomType::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayroomtype_event_number_adults_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'number_adults'  =>  '1'
+                ]
+            );
+
+            $filter = new StayRoomTypeQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoomType::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayroomtype_event_number_children_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'number_children'  =>  '1'
+                ]
+            );
+
+            $filter = new StayRoomTypeQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoomType::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayroomtype_event_capacity_max_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'capacity_max'  =>  '1'
+                ]
+            );
+
+            $filter = new StayRoomTypeQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoomType::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayroomtype_event_capacity_min_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'capacity_min'  =>  '1'
+                ]
+            );
+
+            $filter = new StayRoomTypeQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoomType::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayroomtype_event_display_order_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'display_order'  =>  '1'
                 ]
             );
 

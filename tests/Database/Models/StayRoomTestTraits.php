@@ -58,7 +58,9 @@ trait StayRoomTestTraits
         $response = $this->http->request(
             'POST', '/stay/stayroom', [
             'form_params'   =>  [
-                'name'  =>  'a',
+                'display_order'  =>  '1',
+                'min_child_age'  =>  '1',
+                'max_infants'  =>  '1',
                             ],
                 ['http_errors' => false]
             ]
@@ -341,12 +343,50 @@ trait StayRoomTestTraits
         $this->assertTrue(true);
     }
 
-    public function test_stayroom_event_name_filter()
+    public function test_stayroom_event_display_order_filter()
     {
         try {
             $request = new Request(
                 [
-                'name'  =>  'a'
+                'display_order'  =>  '1'
+                ]
+            );
+
+            $filter = new StayRoomQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoom::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayroom_event_min_child_age_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'min_child_age'  =>  '1'
+                ]
+            );
+
+            $filter = new StayRoomQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayRoom::filter($filter)->first();
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayroom_event_max_infants_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'max_infants'  =>  '1'
                 ]
             );
 
