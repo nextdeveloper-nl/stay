@@ -58,6 +58,7 @@ trait StayHotelTestTraits
         $response = $this->http->request(
             'POST', '/stay/stayhotel', [
             'form_params'   =>  [
+                'external_id'  =>  'a',
                 'name'  =>  'a',
                 'description'  =>  'a',
                 'address'  =>  'a',
@@ -340,6 +341,25 @@ trait StayHotelTestTraits
             $model = \NextDeveloper\Stay\Database\Models\StayHotel::first();
 
             event(new \NextDeveloper\Stay\Events\StayHotel\StayHotelRestoredEvent($model));
+        } catch (\Exception $e) {
+            $this->assertFalse(false, $e->getMessage());
+        }
+
+        $this->assertTrue(true);
+    }
+
+    public function test_stayhotel_event_external_id_filter()
+    {
+        try {
+            $request = new Request(
+                [
+                'external_id'  =>  'a'
+                ]
+            );
+
+            $filter = new StayHotelQueryFilter($request);
+
+            $model = \NextDeveloper\Stay\Database\Models\StayHotel::filter($filter)->first();
         } catch (\Exception $e) {
             $this->assertFalse(false, $e->getMessage());
         }

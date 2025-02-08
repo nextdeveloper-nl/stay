@@ -54,22 +54,30 @@ class AbstractRoomTypesTransformer extends AbstractTransformer
      */
     public function transform(RoomTypes $model)
     {
-                                                $stayHotelsId = \NextDeveloper\Stay\Database\Models\Hotels::where('id', $model->stay_hotels_id)->first();
-                                                            $commonCurrencyId = \NextDeveloper\Commons\Database\Models\Currencies::where('id', $model->common_currency_id)->first();
+                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
+                                                            $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
+                                                            $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
                         
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
-            'stay_hotels_id'  =>  $stayHotelsId ? $stayHotelsId->uuid : null,
+            'external_id'  =>  $externalId ? $externalId->uuid : null,
             'name'  =>  $model->name,
             'description'  =>  $model->description,
-            'facilities'  =>  $model->facilities,
-            'price'  =>  $model->price,
-            'common_currency_id'  =>  $commonCurrencyId ? $commonCurrencyId->uuid : null,
+            'number_adults'  =>  $model->number_adults,
+            'number_children'  =>  $model->number_children,
+            'capacity_max'  =>  $model->capacity_max,
+            'capacity_min'  =>  $model->capacity_min,
+            'is_active'  =>  $model->is_active,
+            'is_visible_extranet'  =>  $model->is_visible_extranet,
+            'is_package_enabled'  =>  $model->is_package_enabled,
+            'is_cruise_enabled'  =>  $model->is_cruise_enabled,
+            'display_order'  =>  $model->display_order,
+            'iam_account_id'  =>  $iamAccountId ? $iamAccountId->uuid : null,
+            'iam_user_id'  =>  $iamUserId ? $iamUserId->uuid : null,
             'created_at'  =>  $model->created_at,
             'updated_at'  =>  $model->updated_at,
             'deleted_at'  =>  $model->deleted_at,
-            'is_public'  =>  $model->is_public,
             ]
         );
     }
@@ -158,6 +166,9 @@ class AbstractRoomTypesTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
+
+
 
 
 

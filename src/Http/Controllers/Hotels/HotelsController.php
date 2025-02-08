@@ -2,7 +2,9 @@
 
 namespace NextDeveloper\Stay\Http\Controllers\Hotels;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
 use NextDeveloper\Stay\Http\Requests\Hotels\HotelsUpdateRequest;
@@ -24,7 +26,7 @@ class HotelsController extends AbstractController
      *
      * @param  HotelsQueryFilter $filter  An object that builds search query
      * @param  Request           $request Laravel request object, this holds all data about request. Automatically populated.
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(HotelsQueryFilter $filter, Request $request)
     {
@@ -111,5 +113,18 @@ class HotelsController extends AbstractController
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+    /**
+     * This method returns the model by external id.
+     *
+     * @param $externalId
+     * @return JsonResponse
+     */
+    public function getByExternalId($externalId)
+    {
+        $hotel = HotelsService::getByExternalId($externalId);
+
+        return $this->withArray((array)$hotel);
+    }
 
 }

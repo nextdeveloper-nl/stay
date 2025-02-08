@@ -54,34 +54,40 @@ class AbstractHotelsTransformer extends AbstractTransformer
      */
     public function transform(Hotels $model)
     {
-                                                $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
-                                                            $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
+                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
                                                             $commonCityId = \NextDeveloper\Commons\Database\Models\Cities::where('id', $model->common_city_id)->first();
                                                             $commonCountryId = \NextDeveloper\Commons\Database\Models\Countries::where('id', $model->common_country_id)->first();
+                                                            $commonCurrencyId = \NextDeveloper\Commons\Database\Models\Currencies::where('id', $model->common_currency_id)->first();
                                                             $foregroundMediaId = \NextDeveloper\Commons\Database\Models\Media::where('id', $model->foreground_media_id)->first();
                                                             $backgroundMediaId = \NextDeveloper\Commons\Database\Models\Media::where('id', $model->background_media_id)->first();
+                                                            $stayProviderId = \NextDeveloper\Stay\Database\Models\Providers::where('id', $model->stay_provider_id)->first();
+                                                            $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
+                                                            $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
                         
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
-            'iam_account_id'  =>  $iamAccountId ? $iamAccountId->uuid : null,
-            'iam_user_id'  =>  $iamUserId ? $iamUserId->uuid : null,
+            'external_id'  =>  $externalId ? $externalId->uuid : null,
             'name'  =>  $model->name,
             'description'  =>  $model->description,
             'address'  =>  $model->address,
             'facilities'  =>  $model->facilities,
             'email'  =>  $model->email,
             'phone'  =>  $model->phone,
-            'common_city_id'  =>  $commonCityId ? $commonCityId->uuid : null,
-            'common_country_id'  =>  $commonCountryId ? $commonCountryId->uuid : null,
-            'foreground_media_id'  =>  $foregroundMediaId ? $foregroundMediaId->uuid : null,
-            'background_media_id'  =>  $backgroundMediaId ? $backgroundMediaId->uuid : null,
             'latitude'  =>  $model->latitude,
             'longitude'  =>  $model->longitude,
+            'is_public'  =>  $model->is_public,
+            'common_city_id'  =>  $commonCityId ? $commonCityId->uuid : null,
+            'common_country_id'  =>  $commonCountryId ? $commonCountryId->uuid : null,
+            'common_currency_id'  =>  $commonCurrencyId ? $commonCurrencyId->uuid : null,
+            'foreground_media_id'  =>  $foregroundMediaId ? $foregroundMediaId->uuid : null,
+            'background_media_id'  =>  $backgroundMediaId ? $backgroundMediaId->uuid : null,
+            'stay_provider_id'  =>  $stayProviderId ? $stayProviderId->uuid : null,
+            'iam_account_id'  =>  $iamAccountId ? $iamAccountId->uuid : null,
+            'iam_user_id'  =>  $iamUserId ? $iamUserId->uuid : null,
             'created_at'  =>  $model->created_at,
             'updated_at'  =>  $model->updated_at,
             'deleted_at'  =>  $model->deleted_at,
-            'is_public'  =>  $model->is_public,
             ]
         );
     }
@@ -170,6 +176,9 @@ class AbstractHotelsTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
+
+
 
 
 
