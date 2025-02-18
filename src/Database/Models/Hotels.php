@@ -38,6 +38,8 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
+ * @property boolean $is_master
+ * @property string $duplicate_checked_group_uuid
  */
 class Hotels extends Model
 {
@@ -74,6 +76,8 @@ class Hotels extends Model
             'stay_provider_id',
             'iam_account_id',
             'iam_user_id',
+            'is_master',
+            'duplicate_checked_group_uuid',
     ];
 
     /**
@@ -116,6 +120,7 @@ class Hotels extends Model
     'created_at' => 'datetime',
     'updated_at' => 'datetime',
     'deleted_at' => 'datetime',
+    'is_master' => 'boolean',
     ];
 
     /**
@@ -177,6 +182,10 @@ class Hotels extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
+
+
+
 
 
 
