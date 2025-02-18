@@ -47,4 +47,7 @@ class RoomTypeProviderMappingsQueryFilter extends AbstractQueryFilter
 
 
 
+
+
+
 }

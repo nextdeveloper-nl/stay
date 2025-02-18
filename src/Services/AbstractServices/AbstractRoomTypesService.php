@@ -13,6 +13,8 @@ use NextDeveloper\Stay\Database\Models\RoomTypes;
 use NextDeveloper\Stay\Database\Filters\RoomTypesQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Events\Services\Events;
+use NextDeveloper\Commons\Database\Models\AvailableActions;
+use NextDeveloper\Commons\Exceptions\NotAllowedException;
 
 /**
  * This class is responsible from managing the data for RoomTypes
@@ -27,6 +29,8 @@ class AbstractRoomTypesService
     {
         $enablePaginate = array_key_exists('paginate', $params);
 
+        $request = new Request();
+
         /**
         * Here we are adding null request since if filter is null, this means that this function is called from
         * non http application. This is actually not I think its a correct way to handle this problem but it's a workaround.
@@ -34,7 +38,7 @@ class AbstractRoomTypesService
         * Please let me know if you have any other idea about this; baris.bulut@nextdeveloper.com
         */
         if($filter == null) {
-            $filter = new RoomTypesQueryFilter(new Request());
+            $filter = new RoomTypesQueryFilter($request);
         }
 
         $perPage = config('commons.pagination.per_page');
@@ -57,11 +61,18 @@ class AbstractRoomTypesService
 
         $model = RoomTypes::filter($filter);
 
-        if($model && $enablePaginate) {
-            return $model->paginate($perPage);
-        } else {
-            return $model->get();
+        if($enablePaginate) {
+            //  We are using this because we have been experiencing huge security problem when we use the paginate method.
+            //  The reason was, when the pagination method was using, somehow paginate was discarding all the filters.
+            return new \Illuminate\Pagination\LengthAwarePaginator(
+                $model->skip(($request->get('page', 1) - 1) * $perPage)->take($perPage)->get(),
+                $model->count(),
+                $perPage,
+                $request->get('page', 1)
+            );
         }
+
+        return $model->get();
     }
 
     public static function getAll()
@@ -78,6 +89,38 @@ class AbstractRoomTypesService
     public static function getByRef($ref) : ?RoomTypes
     {
         return RoomTypes::findByRef($ref);
+    }
+
+    public static function getActions()
+    {
+        $model = RoomTypes::class;
+
+        $model = Str::remove('Database\\Models\\', $model);
+
+        $actions = AvailableActions::where('input', $model)
+            ->get();
+
+        return $actions;
+    }
+
+    /**
+     * This method initiates the related action with the given parameters.
+     */
+    public static function doAction($objectId, $action, ...$params)
+    {
+        $object = RoomTypes::where('uuid', $objectId)->first();
+
+        $action = AvailableActions::where('name', $action)->first();
+        $class = $action->class;
+
+        if(class_exists($class)) {
+            $action = new $class($object, $params);
+            dispatch($action);
+
+            return $action->getActionId();
+        }
+
+        return null;
     }
 
     /**
@@ -127,27 +170,27 @@ class AbstractRoomTypesService
      */
     public static function create(array $data)
     {
-        if (array_key_exists('stay_hotels_id', $data)) {
-            $data['stay_hotels_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\Stay\Database\Models\Hotels',
-                $data['stay_hotels_id']
+        if (array_key_exists('iam_account_id', $data)) {
+            $data['iam_account_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\IAM\Database\Models\Accounts',
+                $data['iam_account_id']
             );
         }
-        if (array_key_exists('common_currency_id', $data)) {
-            $data['common_currency_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\Commons\Database\Models\Currencies',
-                $data['common_currency_id']
-            );
-        }
-    
+            
         if(!array_key_exists('iam_account_id', $data)) {
             $data['iam_account_id'] = UserHelper::currentAccount()->id;
         }
-
+        if (array_key_exists('iam_user_id', $data)) {
+            $data['iam_user_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\IAM\Database\Models\Users',
+                $data['iam_user_id']
+            );
+        }
+                    
         if(!array_key_exists('iam_user_id', $data)) {
             $data['iam_user_id']    = UserHelper::me()->id;
         }
-
+            
         try {
             $model = RoomTypes::create($data);
         } catch(\Exception $e) {
@@ -188,16 +231,23 @@ class AbstractRoomTypesService
     {
         $model = RoomTypes::where('uuid', $id)->first();
 
-        if (array_key_exists('stay_hotels_id', $data)) {
-            $data['stay_hotels_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\Stay\Database\Models\Hotels',
-                $data['stay_hotels_id']
+        if(!$model) {
+            throw new NotAllowedException(
+                'We cannot find the related object to update. ' .
+                'Maybe you dont have the permission to update this object?'
             );
         }
-        if (array_key_exists('common_currency_id', $data)) {
-            $data['common_currency_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\Commons\Database\Models\Currencies',
-                $data['common_currency_id']
+
+        if (array_key_exists('iam_account_id', $data)) {
+            $data['iam_account_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\IAM\Database\Models\Accounts',
+                $data['iam_account_id']
+            );
+        }
+        if (array_key_exists('iam_user_id', $data)) {
+            $data['iam_user_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\IAM\Database\Models\Users',
+                $data['iam_user_id']
             );
         }
     
@@ -228,6 +278,13 @@ class AbstractRoomTypesService
     public static function delete($id)
     {
         $model = RoomTypes::where('uuid', $id)->first();
+
+        if(!$model) {
+            throw new NotAllowedException(
+                'We cannot find the related object to delete. ' .
+                'Maybe you dont have the permission to update this object?'
+            );
+        }
 
         Events::fire('deleted:NextDeveloper\Stay\RoomTypes', $model);
 

@@ -170,22 +170,10 @@ class AbstractAgencyGroupsService
      */
     public static function create(array $data)
     {
-        if (array_key_exists('parent_stay_agency_group_id', $data)) {
-            $data['parent_stay_agency_group_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\ParentStayAgencyGroups',
-                $data['parent_stay_agency_group_id']
-            );
-        }
         if (array_key_exists('marketplace_account_id', $data)) {
             $data['marketplace_account_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Marketplace\Database\Models\Accounts',
                 $data['marketplace_account_id']
-            );
-        }
-        if (array_key_exists('external_id', $data)) {
-            $data['external_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\Externals',
-                $data['external_id']
             );
         }
         if (array_key_exists('iam_account_id', $data)) {
@@ -256,22 +244,10 @@ class AbstractAgencyGroupsService
             );
         }
 
-        if (array_key_exists('parent_stay_agency_group_id', $data)) {
-            $data['parent_stay_agency_group_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\ParentStayAgencyGroups',
-                $data['parent_stay_agency_group_id']
-            );
-        }
         if (array_key_exists('marketplace_account_id', $data)) {
             $data['marketplace_account_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Marketplace\Database\Models\Accounts',
                 $data['marketplace_account_id']
-            );
-        }
-        if (array_key_exists('external_id', $data)) {
-            $data['external_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\Externals',
-                $data['external_id']
             );
         }
         if (array_key_exists('iam_account_id', $data)) {
