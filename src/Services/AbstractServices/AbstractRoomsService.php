@@ -13,6 +13,8 @@ use NextDeveloper\Stay\Database\Models\Rooms;
 use NextDeveloper\Stay\Database\Filters\RoomsQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Events\Services\Events;
+use NextDeveloper\Commons\Database\Models\AvailableActions;
+use NextDeveloper\Commons\Exceptions\NotAllowedException;
 
 /**
  * This class is responsible from managing the data for Rooms
@@ -27,6 +29,8 @@ class AbstractRoomsService
     {
         $enablePaginate = array_key_exists('paginate', $params);
 
+        $request = new Request();
+
         /**
         * Here we are adding null request since if filter is null, this means that this function is called from
         * non http application. This is actually not I think its a correct way to handle this problem but it's a workaround.
@@ -34,7 +38,7 @@ class AbstractRoomsService
         * Please let me know if you have any other idea about this; baris.bulut@nextdeveloper.com
         */
         if($filter == null) {
-            $filter = new RoomsQueryFilter(new Request());
+            $filter = new RoomsQueryFilter($request);
         }
 
         $perPage = config('commons.pagination.per_page');
@@ -57,11 +61,18 @@ class AbstractRoomsService
 
         $model = Rooms::filter($filter);
 
-        if($model && $enablePaginate) {
-            return $model->paginate($perPage);
-        } else {
-            return $model->get();
+        if($enablePaginate) {
+            //  We are using this because we have been experiencing huge security problem when we use the paginate method.
+            //  The reason was, when the pagination method was using, somehow paginate was discarding all the filters.
+            return new \Illuminate\Pagination\LengthAwarePaginator(
+                $model->skip(($request->get('page', 1) - 1) * $perPage)->take($perPage)->get(),
+                $model->count(),
+                $perPage,
+                $request->get('page', 1)
+            );
         }
+
+        return $model->get();
     }
 
     public static function getAll()
@@ -78,6 +89,38 @@ class AbstractRoomsService
     public static function getByRef($ref) : ?Rooms
     {
         return Rooms::findByRef($ref);
+    }
+
+    public static function getActions()
+    {
+        $model = Rooms::class;
+
+        $model = Str::remove('Database\\Models\\', $model);
+
+        $actions = AvailableActions::where('input', $model)
+            ->get();
+
+        return $actions;
+    }
+
+    /**
+     * This method initiates the related action with the given parameters.
+     */
+    public static function doAction($objectId, $action, ...$params)
+    {
+        $object = Rooms::where('uuid', $objectId)->first();
+
+        $action = AvailableActions::where('name', $action)->first();
+        $class = $action->class;
+
+        if(class_exists($class)) {
+            $action = new $class($object, $params);
+            dispatch($action);
+
+            return $action->getActionId();
+        }
+
+        return null;
     }
 
     /**
@@ -127,10 +170,10 @@ class AbstractRoomsService
      */
     public static function create(array $data)
     {
-        if (array_key_exists('stay_hotels_id', $data)) {
-            $data['stay_hotels_id'] = DatabaseHelper::uuidToId(
+        if (array_key_exists('stay_hotel_id', $data)) {
+            $data['stay_hotel_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Stay\Database\Models\Hotels',
-                $data['stay_hotels_id']
+                $data['stay_hotel_id']
             );
         }
         if (array_key_exists('stay_room_type_id', $data)) {
@@ -139,15 +182,7 @@ class AbstractRoomsService
                 $data['stay_room_type_id']
             );
         }
-    
-        if(!array_key_exists('iam_account_id', $data)) {
-            $data['iam_account_id'] = UserHelper::currentAccount()->id;
-        }
-
-        if(!array_key_exists('iam_user_id', $data)) {
-            $data['iam_user_id']    = UserHelper::me()->id;
-        }
-
+                        
         try {
             $model = Rooms::create($data);
         } catch(\Exception $e) {
@@ -188,10 +223,17 @@ class AbstractRoomsService
     {
         $model = Rooms::where('uuid', $id)->first();
 
-        if (array_key_exists('stay_hotels_id', $data)) {
-            $data['stay_hotels_id'] = DatabaseHelper::uuidToId(
+        if(!$model) {
+            throw new NotAllowedException(
+                'We cannot find the related object to update. ' .
+                'Maybe you dont have the permission to update this object?'
+            );
+        }
+
+        if (array_key_exists('stay_hotel_id', $data)) {
+            $data['stay_hotel_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Stay\Database\Models\Hotels',
-                $data['stay_hotels_id']
+                $data['stay_hotel_id']
             );
         }
         if (array_key_exists('stay_room_type_id', $data)) {
@@ -228,6 +270,13 @@ class AbstractRoomsService
     public static function delete($id)
     {
         $model = Rooms::where('uuid', $id)->first();
+
+        if(!$model) {
+            throw new NotAllowedException(
+                'We cannot find the related object to delete. ' .
+                'Maybe you dont have the permission to update this object?'
+            );
+        }
 
         Events::fire('deleted:NextDeveloper\Stay\Rooms', $model);
 

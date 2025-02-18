@@ -127,4 +127,7 @@ class HotelConsumerMappings extends Model
 
 
 
+
+
+
 }
