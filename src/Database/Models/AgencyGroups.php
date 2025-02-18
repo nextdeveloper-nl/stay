@@ -53,7 +53,7 @@ class AgencyGroups extends Model
 
     public $timestamps = true;
 
-    protected $table = 'stay_agency_group';
+    protected $table = 'stay_agency_groups';
 
 
     /**
@@ -173,7 +173,7 @@ class AgencyGroups extends Model
     public static function registerScopes()
     {
         $globalScopes = config('stay.scopes.global');
-        $modelScopes = config('stay.scopes.stay_agency_group');
+        $modelScopes = config('stay.scopes.stay_agency_groups');
 
         if(!$modelScopes) { $modelScopes = [];
         }
@@ -193,6 +193,7 @@ class AgencyGroups extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 
