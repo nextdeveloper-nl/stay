@@ -45,4 +45,5 @@ class HotelProviderMappingsQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

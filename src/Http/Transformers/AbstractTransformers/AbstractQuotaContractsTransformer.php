@@ -54,8 +54,7 @@ class AbstractQuotaContractsTransformer extends AbstractTransformer
      */
     public function transform(QuotaContracts $model)
     {
-                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
-                                                            $stayHotelId = \NextDeveloper\Stay\Database\Models\Hotels::where('id', $model->stay_hotel_id)->first();
+                                                $stayHotelId = \NextDeveloper\Stay\Database\Models\Hotels::where('id', $model->stay_hotel_id)->first();
                                                             $parentStayQuotaContractId = \NextDeveloper\\Database\Models\ParentStayQuotaContracts::where('id', $model->parent_stay_quota_contract_id)->first();
                                                             $stayTarifTypeId = \NextDeveloper\Stay\Database\Models\TarifTypes::where('id', $model->stay_tarif_type_id)->first();
                                                             $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
@@ -64,7 +63,7 @@ class AbstractQuotaContractsTransformer extends AbstractTransformer
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
-            'external_id'  =>  $externalId ? $externalId->uuid : null,
+            'external_id'  =>  $model->external_id,
             'name'  =>  $model->name,
             'external_code'  =>  $model->external_code,
             'observations'  =>  $model->observations,
@@ -175,6 +174,7 @@ class AbstractQuotaContractsTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 
