@@ -35,7 +35,7 @@ class CancellationPolicyDates extends Model
 
     public $timestamps = true;
 
-    protected $table = 'stay_cancellation_policy_date_stays';
+    protected $table = 'stay_cancellation_policy_dates';
 
 
     /**
@@ -123,7 +123,7 @@ class CancellationPolicyDates extends Model
     public static function registerScopes()
     {
         $globalScopes = config('stay.scopes.global');
-        $modelScopes = config('stay.scopes.stay_cancellation_policy_date_stays');
+        $modelScopes = config('stay.scopes.stay_cancellation_policy_dates');
 
         if(!$modelScopes) { $modelScopes = [];
         }
@@ -143,6 +143,7 @@ class CancellationPolicyDates extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 

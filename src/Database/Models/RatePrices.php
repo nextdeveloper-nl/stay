@@ -184,4 +184,5 @@ class RatePrices extends Model
 
 
 
+
 }

@@ -166,7 +166,7 @@ class RoomTypesQueryFilter extends AbstractQueryFilter
 
     public function externalId($value)
     {
-            $external = \NextDeveloper\\Database\Models\Externals::where('uuid', $value)->first();
+            $external = \NextDeveloper\Database\Models\Externals::where('uuid', $value)->first();
 
         if($external) {
             return $this->builder->where('external_id', '=', $external->id);
@@ -192,6 +192,7 @@ class RoomTypesQueryFilter extends AbstractQueryFilter
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n
+
 
 
 

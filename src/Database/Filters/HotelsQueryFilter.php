@@ -206,4 +206,5 @@ class HotelsQueryFilter extends AbstractQueryFilter
 
 
 
+
 }
