@@ -67,6 +67,15 @@ class HotelsQueryFilter extends AbstractQueryFilter
         return $this->builder->where('is_public', $value);
     }
 
+    public function isMaster($value)
+    {
+        if(!is_bool($value)) {
+            $value = false;
+        }
+
+        return $this->builder->where('is_master', $value);
+    }
+
     public function createdAtStart($date)
     {
         return $this->builder->where('created_at', '>=', $date);
@@ -179,6 +188,10 @@ class HotelsQueryFilter extends AbstractQueryFilter
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n
+
+
+
+
 
 
 
