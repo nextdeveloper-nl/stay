@@ -176,10 +176,10 @@ class AbstractCancellationPoliciesService
                 $data['parent_stay_cancellation_policy_id']
             );
         }
-        if (array_key_exists('external_id', $data)) {
-            $data['external_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\Externals',
-                $data['external_id']
+        if (array_key_exists('common_currency_id', $data)) {
+            $data['common_currency_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Currencies',
+                $data['common_currency_id']
             );
         }
         if (array_key_exists('stay_agency_group_id', $data)) {
@@ -262,10 +262,10 @@ class AbstractCancellationPoliciesService
                 $data['parent_stay_cancellation_policy_id']
             );
         }
-        if (array_key_exists('external_id', $data)) {
-            $data['external_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\Externals',
-                $data['external_id']
+        if (array_key_exists('common_currency_id', $data)) {
+            $data['common_currency_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Commons\Database\Models\Currencies',
+                $data['common_currency_id']
             );
         }
         if (array_key_exists('stay_agency_group_id', $data)) {

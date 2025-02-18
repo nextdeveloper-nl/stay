@@ -170,12 +170,6 @@ class AbstractCancellationPolicyDatesService
      */
     public static function create(array $data)
     {
-        if (array_key_exists('external_id', $data)) {
-            $data['external_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\Externals',
-                $data['external_id']
-            );
-        }
         if (array_key_exists('stay_cancellation_policy_id', $data)) {
             $data['stay_cancellation_policy_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Stay\Database\Models\CancellationPolicies',
@@ -250,12 +244,6 @@ class AbstractCancellationPolicyDatesService
             );
         }
 
-        if (array_key_exists('external_id', $data)) {
-            $data['external_id'] = DatabaseHelper::uuidToId(
-                '\NextDeveloper\\Database\Models\Externals',
-                $data['external_id']
-            );
-        }
         if (array_key_exists('stay_cancellation_policy_id', $data)) {
             $data['stay_cancellation_policy_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\Stay\Database\Models\CancellationPolicies',

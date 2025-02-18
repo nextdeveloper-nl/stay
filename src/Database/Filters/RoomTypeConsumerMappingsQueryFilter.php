@@ -48,4 +48,7 @@ class RoomTypeConsumerMappingsQueryFilter extends AbstractQueryFilter
 
 
 
+
+
+
 }
