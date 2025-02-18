@@ -141,4 +141,5 @@ class TarifTypes extends Model
 
 
 
+
 }
