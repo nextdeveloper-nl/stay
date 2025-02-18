@@ -54,8 +54,7 @@ class AbstractMainPurchaseContractsTransformer extends AbstractTransformer
      */
     public function transform(MainPurchaseContracts $model)
     {
-                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
-                                                            $commonCurrencyId = \NextDeveloper\Commons\Database\Models\Currencies::where('id', $model->common_currency_id)->first();
+                                                $commonCurrencyId = \NextDeveloper\Commons\Database\Models\Currencies::where('id', $model->common_currency_id)->first();
                                                             $parentStayMainPurchaseContractId = \NextDeveloper\\Database\Models\ParentStayMainPurchaseContracts::where('id', $model->parent_stay_main_purchase_contract_id)->first();
                                                             $stayTarifTypeId = \NextDeveloper\Stay\Database\Models\TarifTypes::where('id', $model->stay_tarif_type_id)->first();
                                                             $stayHotelId = \NextDeveloper\Stay\Database\Models\Hotels::where('id', $model->stay_hotel_id)->first();
@@ -65,7 +64,7 @@ class AbstractMainPurchaseContractsTransformer extends AbstractTransformer
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
-            'external_id'  =>  $externalId ? $externalId->uuid : null,
+            'external_id'  =>  $model->external_id,
             'name'  =>  $model->name,
             'observations'  =>  $model->observations,
             'internal_observations'  =>  $model->internal_observations,
@@ -206,6 +205,7 @@ class AbstractMainPurchaseContractsTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 

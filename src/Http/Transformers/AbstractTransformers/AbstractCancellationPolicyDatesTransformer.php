@@ -54,8 +54,7 @@ class AbstractCancellationPolicyDatesTransformer extends AbstractTransformer
      */
     public function transform(CancellationPolicyDates $model)
     {
-                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
-                                                            $stayCancellationPolicyId = \NextDeveloper\Stay\Database\Models\CancellationPolicies::where('id', $model->stay_cancellation_policy_id)->first();
+                                                $stayCancellationPolicyId = \NextDeveloper\Stay\Database\Models\CancellationPolicies::where('id', $model->stay_cancellation_policy_id)->first();
                                                             $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
                                                             $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
                         
@@ -64,7 +63,7 @@ class AbstractCancellationPolicyDatesTransformer extends AbstractTransformer
             'id'  =>  $model->uuid,
             'start_date'  =>  $model->start_date,
             'end_date'  =>  $model->end_date,
-            'external_id'  =>  $externalId ? $externalId->uuid : null,
+            'external_id'  =>  $model->external_id,
             'stay_cancellation_policy_id'  =>  $stayCancellationPolicyId ? $stayCancellationPolicyId->uuid : null,
             'iam_account_id'  =>  $iamAccountId ? $iamAccountId->uuid : null,
             'iam_user_id'  =>  $iamUserId ? $iamUserId->uuid : null,
@@ -159,6 +158,7 @@ class AbstractCancellationPolicyDatesTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 

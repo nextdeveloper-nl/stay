@@ -54,15 +54,14 @@ class AbstractRatesTransformer extends AbstractTransformer
      */
     public function transform(Rates $model)
     {
-                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
-                                                            $stayHotelId = \NextDeveloper\Stay\Database\Models\Hotels::where('id', $model->stay_hotel_id)->first();
+                                                $stayHotelId = \NextDeveloper\Stay\Database\Models\Hotels::where('id', $model->stay_hotel_id)->first();
                                                             $stayParentRateId = \NextDeveloper\Stay\Database\Models\ParentRates::where('id', $model->stay_parent_rate_id)->first();
                                                             $stayHotelContractId = \NextDeveloper\Stay\Database\Models\HotelContracts::where('id', $model->stay_hotel_contract_id)->first();
                         
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
-            'external_id'  =>  $externalId ? $externalId->uuid : null,
+            'external_id'  =>  $model->external_id,
             'rate_mode'  =>  $model->rate_mode,
             'rate_type'  =>  $model->rate_type,
             'has_fixed_prices'  =>  $model->has_fixed_prices,
@@ -190,6 +189,7 @@ class AbstractRatesTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 

@@ -56,7 +56,6 @@ class AbstractRatePricesTransformer extends AbstractTransformer
     {
                                                 $stayRateId = \NextDeveloper\Stay\Database\Models\Rates::where('id', $model->stay_rate_id)->first();
                                                             $stayRoomTypeId = \NextDeveloper\Stay\Database\Models\RoomTypes::where('id', $model->stay_room_type_id)->first();
-                                                            $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
                                                             $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
                                                             $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
                         
@@ -65,7 +64,7 @@ class AbstractRatePricesTransformer extends AbstractTransformer
             'id'  =>  $model->uuid,
             'stay_rate_id'  =>  $stayRateId ? $stayRateId->uuid : null,
             'stay_room_type_id'  =>  $stayRoomTypeId ? $stayRoomTypeId->uuid : null,
-            'external_id'  =>  $externalId ? $externalId->uuid : null,
+            'external_id'  =>  $model->external_id,
             'price_type'  =>  $model->price_type,
             'base_price'  =>  $model->base_price,
             'room_price'  =>  $model->room_price,
@@ -180,6 +179,7 @@ class AbstractRatePricesTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 
