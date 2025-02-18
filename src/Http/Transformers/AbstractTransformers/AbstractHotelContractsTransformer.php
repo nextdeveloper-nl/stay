@@ -54,8 +54,7 @@ class AbstractHotelContractsTransformer extends AbstractTransformer
      */
     public function transform(HotelContracts $model)
     {
-                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
-                                                            $stayMainPurchaseContractId = \NextDeveloper\Stay\Database\Models\MainPurchaseContracts::where('id', $model->stay_main_purchase_contract_id)->first();
+                                                $stayMainPurchaseContractId = \NextDeveloper\Stay\Database\Models\MainPurchaseContracts::where('id', $model->stay_main_purchase_contract_id)->first();
                                                             $staySalesContractId = \NextDeveloper\Stay\Database\Models\SalesContracts::where('id', $model->stay_sales_contract_id)->first();
                                                             $stayQuotaContractId = \NextDeveloper\Stay\Database\Models\QuotaContracts::where('id', $model->stay_quota_contract_id)->first();
                                                             $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
@@ -64,7 +63,7 @@ class AbstractHotelContractsTransformer extends AbstractTransformer
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
-            'external_id'  =>  $externalId ? $externalId->uuid : null,
+            'external_id'  =>  $model->external_id,
             'stay_main_purchase_contract_id'  =>  $stayMainPurchaseContractId ? $stayMainPurchaseContractId->uuid : null,
             'stay_sales_contract_id'  =>  $staySalesContractId ? $staySalesContractId->uuid : null,
             'stay_quota_contract_id'  =>  $stayQuotaContractId ? $stayQuotaContractId->uuid : null,
@@ -162,6 +161,7 @@ class AbstractHotelContractsTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 

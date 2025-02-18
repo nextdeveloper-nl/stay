@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                            
+                        
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -313,15 +313,6 @@ class MainPurchaseContractsQueryFilter extends AbstractQueryFilter
         return $this->builder->where('deleted_at', '<=', $date);
     }
 
-    public function externalId($value)
-    {
-            $external = \NextDeveloper\\Database\Models\Externals::where('uuid', $value)->first();
-
-        if($external) {
-            return $this->builder->where('external_id', '=', $external->id);
-        }
-    }
-
     public function commonCurrencyId($value)
     {
             $commonCurrency = \NextDeveloper\Commons\Database\Models\Currencies::where('uuid', $value)->first();
@@ -377,6 +368,7 @@ class MainPurchaseContractsQueryFilter extends AbstractQueryFilter
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 

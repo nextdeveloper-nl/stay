@@ -54,8 +54,7 @@ class AbstractHotelsTransformer extends AbstractTransformer
      */
     public function transform(Hotels $model)
     {
-                                                $externalId = \NextDeveloper\\Database\Models\Externals::where('id', $model->external_id)->first();
-                                                            $commonCityId = \NextDeveloper\Commons\Database\Models\Cities::where('id', $model->common_city_id)->first();
+                                                $commonCityId = \NextDeveloper\Commons\Database\Models\Cities::where('id', $model->common_city_id)->first();
                                                             $commonCountryId = \NextDeveloper\Commons\Database\Models\Countries::where('id', $model->common_country_id)->first();
                                                             $commonCurrencyId = \NextDeveloper\Commons\Database\Models\Currencies::where('id', $model->common_currency_id)->first();
                                                             $foregroundMediaId = \NextDeveloper\Commons\Database\Models\Media::where('id', $model->foreground_media_id)->first();
@@ -67,7 +66,7 @@ class AbstractHotelsTransformer extends AbstractTransformer
         return $this->buildPayload(
             [
             'id'  =>  $model->uuid,
-            'external_id'  =>  $externalId ? $externalId->uuid : null,
+            'external_id'  =>  $model->external_id,
             'name'  =>  $model->name,
             'description'  =>  $model->description,
             'address'  =>  $model->address,
@@ -178,6 +177,7 @@ class AbstractHotelsTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 
 
 
