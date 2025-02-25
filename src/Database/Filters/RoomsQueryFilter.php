@@ -168,4 +168,9 @@ class RoomsQueryFilter extends AbstractQueryFilter
 
 
 
+
+
+
+
+
 }
