@@ -135,4 +135,5 @@ class RoomTypeConsumerMappings extends Model
 
 
 
+
 }

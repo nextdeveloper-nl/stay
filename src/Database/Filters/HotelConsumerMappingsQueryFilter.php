@@ -56,4 +56,5 @@ class HotelConsumerMappingsQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

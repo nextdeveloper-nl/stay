@@ -100,4 +100,5 @@ class RatePricesQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

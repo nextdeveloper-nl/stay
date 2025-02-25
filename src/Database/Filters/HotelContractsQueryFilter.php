@@ -109,4 +109,5 @@ class HotelContractsQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

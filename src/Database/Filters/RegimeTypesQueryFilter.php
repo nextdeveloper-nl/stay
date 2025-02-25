@@ -110,4 +110,5 @@ class RegimeTypesQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

@@ -148,4 +148,5 @@ class HotelSupplementTypes extends Model
 
 
 
+
 }

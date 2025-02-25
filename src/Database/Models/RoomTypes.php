@@ -225,4 +225,5 @@ class RoomTypes extends Model
 
 
 
+
 }

@@ -154,4 +154,5 @@ class RegimeTypes extends Model
 
 
 
+
 }
