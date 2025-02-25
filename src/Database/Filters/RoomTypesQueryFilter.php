@@ -222,4 +222,5 @@ class RoomTypesQueryFilter extends AbstractQueryFilter
 
 
 
+
 }
