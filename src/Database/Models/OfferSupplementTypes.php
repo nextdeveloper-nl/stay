@@ -157,4 +157,5 @@ class OfferSupplementTypes extends Model
 
 
 
+
 }

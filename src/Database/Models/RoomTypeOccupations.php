@@ -151,4 +151,5 @@ class RoomTypeOccupations extends Model
 
 
 
+
 }
