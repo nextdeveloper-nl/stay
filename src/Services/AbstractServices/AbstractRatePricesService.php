@@ -134,6 +134,17 @@ class AbstractRatePricesService
         return RatePrices::where('id', $id)->first();
     }
 
+        /**
+         * This method returns the model by looking at its external id
+         *
+         * @param  $externalId
+         * @return RatePrices|null
+         */
+    public static function getByExternalId($externalId) : ?RatePrices
+    {
+        return RatePrices::where('external_id', $externalId)->first();
+    }
+    
     /**
      * This method returns the sub objects of the related models
      *

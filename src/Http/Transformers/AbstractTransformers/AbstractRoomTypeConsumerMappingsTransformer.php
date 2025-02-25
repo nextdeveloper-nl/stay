@@ -160,4 +160,9 @@ class AbstractRoomTypeConsumerMappingsTransformer extends AbstractTransformer
 
 
 
+
+
+
+
+
 }

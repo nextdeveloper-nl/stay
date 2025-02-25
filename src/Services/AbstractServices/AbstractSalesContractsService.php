@@ -134,6 +134,17 @@ class AbstractSalesContractsService
         return SalesContracts::where('id', $id)->first();
     }
 
+        /**
+         * This method returns the model by looking at its external id
+         *
+         * @param  $externalId
+         * @return SalesContracts|null
+         */
+    public static function getByExternalId($externalId) : ?SalesContracts
+    {
+        return SalesContracts::where('external_id', $externalId)->first();
+    }
+    
     /**
      * This method returns the sub objects of the related models
      *
