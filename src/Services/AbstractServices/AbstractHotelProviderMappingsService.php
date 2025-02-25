@@ -134,6 +134,7 @@ class AbstractHotelProviderMappingsService
         return HotelProviderMappings::where('id', $id)->first();
     }
 
+    
     /**
      * This method returns the sub objects of the related models
      *

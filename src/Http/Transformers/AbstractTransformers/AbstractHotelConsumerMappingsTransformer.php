@@ -160,4 +160,9 @@ class AbstractHotelConsumerMappingsTransformer extends AbstractTransformer
 
 
 
+
+
+
+
+
 }

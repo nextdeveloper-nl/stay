@@ -134,6 +134,17 @@ class AbstractCancellationPolicyDatesService
         return CancellationPolicyDates::where('id', $id)->first();
     }
 
+        /**
+         * This method returns the model by looking at its external id
+         *
+         * @param  $externalId
+         * @return CancellationPolicyDates|null
+         */
+    public static function getByExternalId($externalId) : ?CancellationPolicyDates
+    {
+        return CancellationPolicyDates::where('external_id', $externalId)->first();
+    }
+    
     /**
      * This method returns the sub objects of the related models
      *

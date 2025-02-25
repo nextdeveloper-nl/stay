@@ -195,4 +195,9 @@ class AbstractHotelsTransformer extends AbstractTransformer
 
 
 
+
+
+
+
+
 }

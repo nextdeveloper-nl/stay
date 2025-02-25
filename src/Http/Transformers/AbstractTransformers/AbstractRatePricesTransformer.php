@@ -189,4 +189,9 @@ class AbstractRatePricesTransformer extends AbstractTransformer
 
 
 
+
+
+
+
+
 }

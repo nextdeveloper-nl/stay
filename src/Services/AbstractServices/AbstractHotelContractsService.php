@@ -134,6 +134,17 @@ class AbstractHotelContractsService
         return HotelContracts::where('id', $id)->first();
     }
 
+        /**
+         * This method returns the model by looking at its external id
+         *
+         * @param  $externalId
+         * @return HotelContracts|null
+         */
+    public static function getByExternalId($externalId) : ?HotelContracts
+    {
+        return HotelContracts::where('external_id', $externalId)->first();
+    }
+    
     /**
      * This method returns the sub objects of the related models
      *

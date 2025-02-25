@@ -159,4 +159,9 @@ class AbstractRoomTypeProviderMappingsTransformer extends AbstractTransformer
 
 
 
+
+
+
+
+
 }
