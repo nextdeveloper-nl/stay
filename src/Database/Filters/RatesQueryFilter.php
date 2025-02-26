@@ -169,4 +169,7 @@ class RatesQueryFilter extends AbstractQueryFilter
 
 
 
+
+
+
 }

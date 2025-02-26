@@ -37,6 +37,7 @@ class RatePricesCreateRequest extends AbstractFormRequest
         'additional_price_6' => 'nullable',
         'additional_price_7' => 'nullable',
         'additional_price_8' => 'nullable',
+        'stay_regime_id' => 'nullable|exists:stay_regimes,uuid|uuid',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
