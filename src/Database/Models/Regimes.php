@@ -36,11 +36,15 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  */
 class Regimes extends Model
 {
-    use Filterable, UuidId, CleanCache, Taggable;
+    use Filterable, CleanCache, Taggable;
+    use UuidId;
     use SoftDeletes;
 
 
     public $timestamps = true;
+
+
+
 
     protected $table = 'stay_regimes';
 
@@ -162,6 +166,9 @@ class Regimes extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+
+
 
 
 
