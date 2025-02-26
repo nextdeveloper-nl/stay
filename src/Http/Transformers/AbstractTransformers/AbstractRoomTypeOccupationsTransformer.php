@@ -165,4 +165,7 @@ class AbstractRoomTypeOccupationsTransformer extends AbstractTransformer
 
 
 
+
+
+
 }

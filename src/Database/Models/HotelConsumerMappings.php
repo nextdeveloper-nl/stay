@@ -20,10 +20,14 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  */
 class HotelConsumerMappings extends Model
 {
-    use Filterable, UuidId, CleanCache, Taggable;
+    use Filterable, CleanCache, Taggable;
 
 
     public $timestamps = false;
+
+    public $incrementing = false;
+
+
 
     protected $table = 'stay_hotel_consumer_mappings';
 
@@ -121,6 +125,9 @@ class HotelConsumerMappings extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+
+
 
 
 

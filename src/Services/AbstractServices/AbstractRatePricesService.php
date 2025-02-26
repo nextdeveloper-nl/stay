@@ -213,7 +213,13 @@ class AbstractRatePricesService
         if(!array_key_exists('iam_user_id', $data)) {
             $data['iam_user_id']    = UserHelper::me()->id;
         }
-            
+        if (array_key_exists('stay_regime_id', $data)) {
+            $data['stay_regime_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Stay\Database\Models\Regimes',
+                $data['stay_regime_id']
+            );
+        }
+                        
         try {
             $model = RatePrices::create($data);
         } catch(\Exception $e) {
@@ -283,6 +289,12 @@ class AbstractRatePricesService
             $data['iam_user_id'] = DatabaseHelper::uuidToId(
                 '\NextDeveloper\IAM\Database\Models\Users',
                 $data['iam_user_id']
+            );
+        }
+        if (array_key_exists('stay_regime_id', $data)) {
+            $data['stay_regime_id'] = DatabaseHelper::uuidToId(
+                '\NextDeveloper\Stay\Database\Models\Regimes',
+                $data['stay_regime_id']
             );
         }
     

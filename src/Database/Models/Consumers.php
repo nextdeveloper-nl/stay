@@ -19,10 +19,13 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  */
 class Consumers extends Model
 {
-    use Filterable, UuidId, CleanCache, Taggable;
+    use Filterable, CleanCache, Taggable;
 
 
     public $timestamps = false;
+
+
+
 
     protected $table = 'stay_consumers';
 
@@ -117,6 +120,9 @@ class Consumers extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
+
+
 
 
 
