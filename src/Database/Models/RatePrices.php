@@ -46,7 +46,6 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
- * @property integer $stay_regime_id
  */
 class RatePrices extends Model
 {
@@ -95,7 +94,6 @@ class RatePrices extends Model
             'additional_price_8',
             'iam_account_id',
             'iam_user_id',
-            'stay_regime_id',
     ];
 
     /**
@@ -124,7 +122,6 @@ class RatePrices extends Model
     'created_at' => 'datetime',
     'updated_at' => 'datetime',
     'deleted_at' => 'datetime',
-    'stay_regime_id' => 'integer',
     ];
 
     /**
@@ -186,6 +183,7 @@ class RatePrices extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 

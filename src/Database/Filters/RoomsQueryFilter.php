@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-        
+            
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -132,7 +132,17 @@ class RoomsQueryFilter extends AbstractQueryFilter
         }
     }
 
+    public function stayRoomCategoryId($value)
+    {
+            $stayRoomCategory = \NextDeveloper\Stay\Database\Models\RoomCategories::where('uuid', $value)->first();
+
+        if($stayRoomCategory) {
+            return $this->builder->where('stay_room_category_id', '=', $stayRoomCategory->id);
+        }
+    }
+
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n
+
 
 
 
