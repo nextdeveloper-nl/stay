@@ -31,6 +31,7 @@ class RoomsCreateRequest extends AbstractFormRequest
         'is_hidden_in_allotment' => 'nullable|boolean',
         'child_can_be_priced_as_adult' => 'nullable|boolean',
         'infant_priced_as_child' => 'nullable|boolean',
+        'stay_room_category_id' => 'nullable|exists:stay_room_categories,uuid|uuid',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n

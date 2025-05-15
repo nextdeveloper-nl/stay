@@ -142,4 +142,5 @@ class RoomTypeProviderMappings extends Model
 
 
 
+
 }

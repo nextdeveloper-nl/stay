@@ -104,4 +104,5 @@ class HotelSupplementTypesQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

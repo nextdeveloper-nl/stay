@@ -56,6 +56,7 @@ class AbstractRoomsTransformer extends AbstractTransformer
     {
                                                 $stayHotelId = \NextDeveloper\Stay\Database\Models\Hotels::where('id', $model->stay_hotel_id)->first();
                                                             $stayRoomTypeId = \NextDeveloper\Stay\Database\Models\RoomTypes::where('id', $model->stay_room_type_id)->first();
+                                                            $stayRoomCategoryId = \NextDeveloper\Stay\Database\Models\RoomCategories::where('id', $model->stay_room_category_id)->first();
                         
         return $this->buildPayload(
             [
@@ -81,6 +82,7 @@ class AbstractRoomsTransformer extends AbstractTransformer
             'created_at'  =>  $model->created_at,
             'updated_at'  =>  $model->updated_at,
             'deleted_at'  =>  $model->deleted_at,
+            'stay_room_category_id'  =>  $stayRoomCategoryId ? $stayRoomCategoryId->uuid : null,
             ]
         );
     }
@@ -169,6 +171,7 @@ class AbstractRoomsTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n
+
 
 
 

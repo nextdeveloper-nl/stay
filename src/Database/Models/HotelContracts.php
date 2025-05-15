@@ -165,4 +165,5 @@ class HotelContracts extends Model
 
 
 
+
 }

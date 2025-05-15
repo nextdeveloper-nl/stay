@@ -159,4 +159,5 @@ class RoomTypeOccupations extends Model
 
 
 
+
 }
