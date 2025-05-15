@@ -184,6 +184,10 @@ class StayAdminRole extends AbstractRole implements IAuthorizationRole
             'stay_hotel_supplements:update',
             'stay_hotel_supplements:create',
             'stay_hotel_supplements:delete',
+            'stay_room_categories:read',
+            'stay_room_categories:update',
+            'stay_room_categories:create',
+            'stay_room_categories:delete',
         ];
     }
 

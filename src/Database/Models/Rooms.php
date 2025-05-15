@@ -38,6 +38,7 @@ use NextDeveloper\Commons\Database\Traits\Taggable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon $deleted_at
+ * @property integer $stay_room_category_id
  */
 class Rooms extends Model
 {
@@ -78,6 +79,7 @@ class Rooms extends Model
             'is_hidden_in_allotment',
             'child_can_be_priced_as_adult',
             'infant_priced_as_child',
+            'stay_room_category_id',
     ];
 
     /**
@@ -114,6 +116,7 @@ class Rooms extends Model
     'created_at' => 'datetime',
     'updated_at' => 'datetime',
     'deleted_at' => 'datetime',
+    'stay_room_category_id' => 'integer',
     ];
 
     /**
@@ -175,6 +178,7 @@ class Rooms extends Model
     }
 
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n\n\n\n\n\n\n
+
 
 
 

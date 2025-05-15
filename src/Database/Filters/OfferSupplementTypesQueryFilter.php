@@ -123,4 +123,5 @@ class OfferSupplementTypesQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

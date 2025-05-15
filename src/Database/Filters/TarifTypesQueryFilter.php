@@ -97,4 +97,5 @@ class TarifTypesQueryFilter extends AbstractQueryFilter
 
 
 
+
 }

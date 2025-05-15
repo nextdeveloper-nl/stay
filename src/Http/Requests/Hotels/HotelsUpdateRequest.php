@@ -29,7 +29,6 @@ class HotelsUpdateRequest extends AbstractFormRequest
         'foreground_media_id' => 'nullable|exists:common_media,uuid|uuid',
         'background_media_id' => 'nullable|exists:common_media,uuid|uuid',
         'stay_provider_id' => 'nullable|exists:stay_providers,uuid|uuid',
-        'is_master' => 'boolean',
         ];
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE\n\n\n\n\n\n

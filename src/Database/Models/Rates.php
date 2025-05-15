@@ -236,4 +236,5 @@ class Rates extends Model
 
 
 
+
 }

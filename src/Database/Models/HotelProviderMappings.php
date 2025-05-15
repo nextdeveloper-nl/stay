@@ -141,4 +141,5 @@ class HotelProviderMappings extends Model
 
 
 
+
 }

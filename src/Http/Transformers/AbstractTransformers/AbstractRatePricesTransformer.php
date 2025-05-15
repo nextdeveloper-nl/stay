@@ -58,7 +58,6 @@ class AbstractRatePricesTransformer extends AbstractTransformer
                                                             $stayRoomTypeId = \NextDeveloper\Stay\Database\Models\RoomTypes::where('id', $model->stay_room_type_id)->first();
                                                             $iamAccountId = \NextDeveloper\IAM\Database\Models\Accounts::where('id', $model->iam_account_id)->first();
                                                             $iamUserId = \NextDeveloper\IAM\Database\Models\Users::where('id', $model->iam_user_id)->first();
-                                                            $stayRegimeId = \NextDeveloper\Stay\Database\Models\Regimes::where('id', $model->stay_regime_id)->first();
                         
         return $this->buildPayload(
             [
@@ -92,7 +91,6 @@ class AbstractRatePricesTransformer extends AbstractTransformer
             'created_at'  =>  $model->created_at,
             'updated_at'  =>  $model->updated_at,
             'deleted_at'  =>  $model->deleted_at,
-            'stay_regime_id'  =>  $stayRegimeId ? $stayRegimeId->uuid : null,
             ]
         );
     }
@@ -181,6 +179,7 @@ class AbstractRatePricesTransformer extends AbstractTransformer
         return $this->collection($addresses, new AddressesTransformer());
     }
     // EDIT AFTER HERE - WARNING: ABOVE THIS LINE MAY BE REGENERATED AND YOU MAY LOSE CODE
+
 
 
 
