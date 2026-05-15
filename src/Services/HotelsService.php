@@ -2,7 +2,6 @@
 
 namespace NextDeveloper\Stay\Services;
 
-use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Stay\Database\Models\Hotels;
 use NextDeveloper\Stay\Services\AbstractServices\AbstractHotelsService;
 

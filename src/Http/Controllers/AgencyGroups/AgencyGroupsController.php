@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\AgencyGroups;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\AgencyGroups\AgencyGroupsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\AgencyGroupsQueryFilter;
 use NextDeveloper\Stay\Database\Models\AgencyGroups;
-use NextDeveloper\Stay\Services\AgencyGroupsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\AgencyGroups\AgencyGroupsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\AgencyGroups\AgencyGroupsUpdateRequest;
+use NextDeveloper\Stay\Services\AgencyGroupsService;
+
 class AgencyGroupsController extends AbstractController
 {
     private $model = AgencyGroups::class;

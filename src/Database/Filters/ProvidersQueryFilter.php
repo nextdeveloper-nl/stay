@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,32 +17,32 @@ class ProvidersQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function observations($value)
     {
         return $this->builder->where('observations', 'like', '%' . $value . '%');
     }
-    
+
     public function address($value)
     {
         return $this->builder->where('address', 'like', '%' . $value . '%');
     }
-    
+
     public function correspondenceAddress($value)
     {
         return $this->builder->where('correspondence_address', 'like', '%' . $value . '%');
     }
-    
+
     public function bankAccountDescription($value)
     {
         return $this->builder->where('bank_account_description', 'like', '%' . $value . '%');
     }
-    
+
     public function communicationText($value)
     {
         return $this->builder->where('communication_text', 'like', '%' . $value . '%');
     }
-    
+
     public function blockingReason($value)
     {
         return $this->builder->where('blocking_reason', 'like', '%' . $value . '%');

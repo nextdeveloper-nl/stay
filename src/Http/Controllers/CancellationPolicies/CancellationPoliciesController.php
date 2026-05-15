@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\CancellationPolicies;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\CancellationPolicies\CancellationPoliciesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\CancellationPoliciesQueryFilter;
 use NextDeveloper\Stay\Database\Models\CancellationPolicies;
-use NextDeveloper\Stay\Services\CancellationPoliciesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\CancellationPolicies\CancellationPoliciesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\CancellationPolicies\CancellationPoliciesUpdateRequest;
+use NextDeveloper\Stay\Services\CancellationPoliciesService;
+
 class CancellationPoliciesController extends AbstractController
 {
     private $model = CancellationPolicies::class;

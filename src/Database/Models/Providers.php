@@ -2,14 +2,13 @@
 
 namespace NextDeveloper\Stay\Database\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
-use NextDeveloper\Commons\Database\Traits\Filterable;
-use NextDeveloper\Stay\Database\Observers\ProvidersObserver;
-use NextDeveloper\Commons\Database\Traits\UuidId;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
+use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Commons\Database\Traits\Taggable;
+use NextDeveloper\Commons\Database\Traits\UuidId;
+use NextDeveloper\Stay\Database\Observers\ProvidersObserver;
 
 /**
  * Providers model.

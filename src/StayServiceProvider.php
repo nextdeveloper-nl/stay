@@ -2,8 +2,6 @@
 
 namespace NextDeveloper\Stay;
 
-use GuzzleHttp\Client as GuzzleClient;
-use Illuminate\Support\Facades\Log;
 use NextDeveloper\Commons\AbstractServiceProvider;
 
 /**

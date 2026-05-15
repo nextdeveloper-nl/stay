@@ -2,14 +2,13 @@
 
 namespace NextDeveloper\Stay\Tests\Database\Models;
 
-use Tests\TestCase;
 use GuzzleHttp\Client;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Database\Filters\StayRoomCategoryQueryFilter;
-use NextDeveloper\Stay\Services\AbstractServices\AbstractStayRoomCategoryService;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use League\Fractal\Resource\Collection;
+use NextDeveloper\Stay\Database\Filters\StayRoomCategoryQueryFilter;
+use NextDeveloper\Stay\Services\AbstractServices\AbstractStayRoomCategoryService;
 
 trait StayRoomCategoryTestTraits
 {

@@ -5,11 +5,9 @@ namespace NextDeveloper\Stay\Authorization\Roles;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use NextDeveloper\CRM\Database\Models\AccountManagers;
 use NextDeveloper\IAM\Authorization\Roles\AbstractRole;
 use NextDeveloper\IAM\Authorization\Roles\IAuthorizationRole;
 use NextDeveloper\IAM\Database\Models\Users;
-use NextDeveloper\IAM\Helpers\UserHelper;
 
 class StayAdminRole extends AbstractRole implements IAuthorizationRole
 {
@@ -222,10 +220,5 @@ class StayAdminRole extends AbstractRole implements IAuthorizationRole
     public function getDbPrefix()
     {
         return self::DB_PREFIX;
-    }
-
-    public function checkRules(Users $users): bool
-    {
-        // TODO: Implement checkRules() method.
     }
 }

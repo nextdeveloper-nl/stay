@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\RegimeConsumerMappings;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\RegimeConsumerMappings\RegimeConsumerMappingsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\RegimeConsumerMappingsQueryFilter;
 use NextDeveloper\Stay\Database\Models\RegimeConsumerMappings;
-use NextDeveloper\Stay\Services\RegimeConsumerMappingsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\RegimeConsumerMappings\RegimeConsumerMappingsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\RegimeConsumerMappings\RegimeConsumerMappingsUpdateRequest;
+use NextDeveloper\Stay\Services\RegimeConsumerMappingsService;
+
 class RegimeConsumerMappingsController extends AbstractController
 {
     private $model = RegimeConsumerMappings::class;

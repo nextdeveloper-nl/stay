@@ -2,19 +2,18 @@
 
 namespace NextDeveloper\Stay\Services\AbstractServices;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use NextDeveloper\IAM\Helpers\UserHelper;
-use NextDeveloper\Commons\Common\Cache\CacheHelper;
-use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Commons\Database\Models\AvailableActions;
-use NextDeveloper\Stay\Database\Models\ProductTypes;
-use NextDeveloper\Stay\Database\Filters\ProductTypesQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Events\Services\Events;
 use NextDeveloper\Commons\Exceptions\NotAllowedException;
+use NextDeveloper\Commons\Helpers\DatabaseHelper;
+use NextDeveloper\Events\Services\Events;
+use NextDeveloper\IAM\Helpers\UserHelper;
+use NextDeveloper\Stay\Database\Filters\ProductTypesQueryFilter;
+use NextDeveloper\Stay\Database\Models\ProductTypes;
 
 /**
  * This class is responsible from managing the data for ProductTypes
@@ -144,7 +143,7 @@ class AbstractProductTypesService
     {
         return ProductTypes::where('external_id', $externalId)->first();
     }
-    
+
     /**
      * This method returns the sub objects of the related models
      *
@@ -187,7 +186,7 @@ class AbstractProductTypesService
                 $data['iam_account_id']
             );
         }
-            
+
         if(!array_key_exists('iam_account_id', $data)) {
             $data['iam_account_id'] = UserHelper::currentAccount()->id;
         }
@@ -197,11 +196,11 @@ class AbstractProductTypesService
                 $data['iam_user_id']
             );
         }
-                    
+
         if(!array_key_exists('iam_user_id', $data)) {
             $data['iam_user_id']    = UserHelper::me()->id;
         }
-            
+
         try {
             $model = ProductTypes::create($data);
         } catch(\Exception $e) {
@@ -261,7 +260,7 @@ class AbstractProductTypesService
                 $data['iam_user_id']
             );
         }
-    
+
         Events::fire('updating:NextDeveloper\Stay\ProductTypes', $model);
 
         try {

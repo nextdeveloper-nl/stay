@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\RoomTypeConsumerMappings;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\RoomTypeConsumerMappings\RoomTypeConsumerMappingsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\RoomTypeConsumerMappingsQueryFilter;
 use NextDeveloper\Stay\Database\Models\RoomTypeConsumerMappings;
-use NextDeveloper\Stay\Services\RoomTypeConsumerMappingsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\RoomTypeConsumerMappings\RoomTypeConsumerMappingsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\RoomTypeConsumerMappings\RoomTypeConsumerMappingsUpdateRequest;
+use NextDeveloper\Stay\Services\RoomTypeConsumerMappingsService;
+
 class RoomTypeConsumerMappingsController extends AbstractController
 {
     private $model = RoomTypeConsumerMappings::class;

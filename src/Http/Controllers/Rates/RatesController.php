@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\Rates;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\Rates\RatesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\RatesQueryFilter;
 use NextDeveloper\Stay\Database\Models\Rates;
-use NextDeveloper\Stay\Services\RatesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\Rates\RatesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\Rates\RatesUpdateRequest;
+use NextDeveloper\Stay\Services\RatesService;
+
 class RatesController extends AbstractController
 {
     private $model = Rates::class;

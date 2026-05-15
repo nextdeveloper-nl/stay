@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\OfferSupplementTypes;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\OfferSupplementTypes\OfferSupplementTypesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\OfferSupplementTypesQueryFilter;
 use NextDeveloper\Stay\Database\Models\OfferSupplementTypes;
-use NextDeveloper\Stay\Services\OfferSupplementTypesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\OfferSupplementTypes\OfferSupplementTypesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\OfferSupplementTypes\OfferSupplementTypesUpdateRequest;
+use NextDeveloper\Stay\Services\OfferSupplementTypesService;
+
 class OfferSupplementTypesController extends AbstractController
 {
     private $model = OfferSupplementTypes::class;

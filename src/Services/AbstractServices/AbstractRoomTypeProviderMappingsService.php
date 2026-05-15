@@ -2,19 +2,17 @@
 
 namespace NextDeveloper\Stay\Services\AbstractServices;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use NextDeveloper\IAM\Helpers\UserHelper;
-use NextDeveloper\Commons\Common\Cache\CacheHelper;
-use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Commons\Database\Models\AvailableActions;
-use NextDeveloper\Stay\Database\Models\RoomTypeProviderMappings;
-use NextDeveloper\Stay\Database\Filters\RoomTypeProviderMappingsQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Events\Services\Events;
 use NextDeveloper\Commons\Exceptions\NotAllowedException;
+use NextDeveloper\Commons\Helpers\DatabaseHelper;
+use NextDeveloper\Events\Services\Events;
+use NextDeveloper\Stay\Database\Filters\RoomTypeProviderMappingsQueryFilter;
+use NextDeveloper\Stay\Database\Models\RoomTypeProviderMappings;
 
 /**
  * This class is responsible from managing the data for RoomTypeProviderMappings
@@ -134,7 +132,7 @@ class AbstractRoomTypeProviderMappingsService
         return RoomTypeProviderMappings::where('id', $id)->first();
     }
 
-    
+
     /**
      * This method returns the sub objects of the related models
      *
@@ -183,7 +181,7 @@ class AbstractRoomTypeProviderMappingsService
                 $data['stay_provider_id']
             );
         }
-                        
+
         try {
             $model = RoomTypeProviderMappings::create($data);
         } catch(\Exception $e) {
@@ -243,7 +241,7 @@ class AbstractRoomTypeProviderMappingsService
                 $data['stay_provider_id']
             );
         }
-    
+
         Events::fire('updating:NextDeveloper\Stay\RoomTypeProviderMappings', $model);
 
         try {

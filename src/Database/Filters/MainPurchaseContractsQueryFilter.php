@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                        
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,17 +17,17 @@ class MainPurchaseContractsQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function externalId($value)
     {
         return $this->builder->where('external_id', 'like', '%' . $value . '%');
     }
-    
+
     public function observations($value)
     {
         return $this->builder->where('observations', 'like', '%' . $value . '%');
     }
-    
+
     public function internalObservations($value)
     {
         return $this->builder->where('internal_observations', 'like', '%' . $value . '%');

@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,72 +17,72 @@ class DelegationsQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function name($value)
     {
         return $this->builder->where('name', 'like', '%' . $value . '%');
     }
-    
+
     public function address($value)
     {
         return $this->builder->where('address', 'like', '%' . $value . '%');
     }
-    
+
     public function phone($value)
     {
         return $this->builder->where('phone', 'like', '%' . $value . '%');
     }
-    
+
     public function fax($value)
     {
         return $this->builder->where('fax', 'like', '%' . $value . '%');
     }
-    
+
     public function schedule($value)
     {
         return $this->builder->where('schedule', 'like', '%' . $value . '%');
     }
-    
+
     public function photo($value)
     {
         return $this->builder->where('photo', 'like', '%' . $value . '%');
     }
-    
+
     public function salesResponsible($value)
     {
         return $this->builder->where('sales_responsible', 'like', '%' . $value . '%');
     }
-    
+
     public function purchasesResponsible($value)
     {
         return $this->builder->where('purchases_responsible', 'like', '%' . $value . '%');
     }
-    
+
     public function allGroupsId($value)
     {
         return $this->builder->where('all_groups_id', 'like', '%' . $value . '%');
     }
-    
+
     public function sendAllGroupsId($value)
     {
         return $this->builder->where('send_all_groups_id', 'like', '%' . $value . '%');
     }
-    
+
     public function codeAnalitic($value)
     {
         return $this->builder->where('code_analitic', 'like', '%' . $value . '%');
     }
-    
+
     public function letterTickets($value)
     {
         return $this->builder->where('letter_tickets', 'like', '%' . $value . '%');
     }
-    
+
     public function sendExtranet($value)
     {
         return $this->builder->where('send_extranet', 'like', '%' . $value . '%');
     }
-    
+
     public function externalId($value)
     {
         return $this->builder->where('external_id', 'like', '%' . $value . '%');

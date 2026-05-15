@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\Providers;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\Providers\ProvidersUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\ProvidersQueryFilter;
 use NextDeveloper\Stay\Database\Models\Providers;
-use NextDeveloper\Stay\Services\ProvidersService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\Providers\ProvidersCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\Providers\ProvidersUpdateRequest;
+use NextDeveloper\Stay\Services\ProvidersService;
+
 class ProvidersController extends AbstractController
 {
     private $model = Providers::class;

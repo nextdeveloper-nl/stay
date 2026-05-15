@@ -2,19 +2,17 @@
 
 namespace NextDeveloper\Stay\Services\AbstractServices;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use NextDeveloper\IAM\Helpers\UserHelper;
-use NextDeveloper\Commons\Common\Cache\CacheHelper;
-use NextDeveloper\Commons\Helpers\DatabaseHelper;
 use NextDeveloper\Commons\Database\Models\AvailableActions;
-use NextDeveloper\Stay\Database\Models\Rates;
-use NextDeveloper\Stay\Database\Filters\RatesQueryFilter;
 use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Events\Services\Events;
 use NextDeveloper\Commons\Exceptions\NotAllowedException;
+use NextDeveloper\Commons\Helpers\DatabaseHelper;
+use NextDeveloper\Events\Services\Events;
+use NextDeveloper\Stay\Database\Filters\RatesQueryFilter;
+use NextDeveloper\Stay\Database\Models\Rates;
 
 /**
  * This class is responsible from managing the data for Rates
@@ -144,7 +142,7 @@ class AbstractRatesService
     {
         return Rates::where('external_id', $externalId)->first();
     }
-    
+
     /**
      * This method returns the sub objects of the related models
      *
@@ -199,7 +197,7 @@ class AbstractRatesService
                 $data['stay_hotel_contract_id']
             );
         }
-                        
+
         try {
             $model = Rates::create($data);
         } catch(\Exception $e) {
@@ -265,7 +263,7 @@ class AbstractRatesService
                 $data['stay_hotel_contract_id']
             );
         }
-    
+
         Events::fire('updating:NextDeveloper\Stay\Rates', $model);
 
         try {

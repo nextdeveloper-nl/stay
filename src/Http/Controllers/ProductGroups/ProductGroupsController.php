@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\ProductGroups;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\ProductGroups\ProductGroupsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\ProductGroupsQueryFilter;
 use NextDeveloper\Stay\Database\Models\ProductGroups;
-use NextDeveloper\Stay\Services\ProductGroupsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\ProductGroups\ProductGroupsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\ProductGroups\ProductGroupsUpdateRequest;
+use NextDeveloper\Stay\Services\ProductGroupsService;
+
 class ProductGroupsController extends AbstractController
 {
     private $model = ProductGroups::class;

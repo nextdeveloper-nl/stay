@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\RoomTypeProviderMappings;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\RoomTypeProviderMappings\RoomTypeProviderMappingsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\RoomTypeProviderMappingsQueryFilter;
 use NextDeveloper\Stay\Database\Models\RoomTypeProviderMappings;
-use NextDeveloper\Stay\Services\RoomTypeProviderMappingsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\RoomTypeProviderMappings\RoomTypeProviderMappingsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\RoomTypeProviderMappings\RoomTypeProviderMappingsUpdateRequest;
+use NextDeveloper\Stay\Services\RoomTypeProviderMappingsService;
+
 class RoomTypeProviderMappingsController extends AbstractController
 {
     private $model = RoomTypeProviderMappings::class;

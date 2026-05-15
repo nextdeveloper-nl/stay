@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\TarifTypes;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\TarifTypes\TarifTypesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\TarifTypesQueryFilter;
 use NextDeveloper\Stay\Database\Models\TarifTypes;
-use NextDeveloper\Stay\Services\TarifTypesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\TarifTypes\TarifTypesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\TarifTypes\TarifTypesUpdateRequest;
+use NextDeveloper\Stay\Services\TarifTypesService;
+
 class TarifTypesController extends AbstractController
 {
     private $model = TarifTypes::class;

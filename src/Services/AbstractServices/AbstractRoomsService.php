@@ -2,19 +2,17 @@
 
 namespace NextDeveloper\Stay\Services\AbstractServices;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use NextDeveloper\IAM\Helpers\UserHelper;
-use NextDeveloper\Commons\Common\Cache\CacheHelper;
-use NextDeveloper\Commons\Helpers\DatabaseHelper;
-use NextDeveloper\Stay\Database\Models\Rooms;
-use NextDeveloper\Stay\Database\Filters\RoomsQueryFilter;
-use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Events\Services\Events;
 use NextDeveloper\Commons\Database\Models\AvailableActions;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Commons\Exceptions\NotAllowedException;
+use NextDeveloper\Commons\Helpers\DatabaseHelper;
+use NextDeveloper\Events\Services\Events;
+use NextDeveloper\Stay\Database\Filters\RoomsQueryFilter;
+use NextDeveloper\Stay\Database\Models\Rooms;
 
 /**
  * This class is responsible from managing the data for Rooms
@@ -134,7 +132,7 @@ class AbstractRoomsService
         return Rooms::where('id', $id)->first();
     }
 
-    
+
     /**
      * This method returns the sub objects of the related models
      *
@@ -183,7 +181,7 @@ class AbstractRoomsService
                 $data['stay_room_type_id']
             );
         }
-                        
+
         try {
             $model = Rooms::create($data);
         } catch(\Exception $e) {
@@ -243,7 +241,7 @@ class AbstractRoomsService
                 $data['stay_room_type_id']
             );
         }
-    
+
         Events::fire('updating:NextDeveloper\Stay\Rooms', $model);
 
         try {

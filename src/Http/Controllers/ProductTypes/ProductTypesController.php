@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\ProductTypes;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\ProductTypes\ProductTypesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\ProductTypesQueryFilter;
 use NextDeveloper\Stay\Database\Models\ProductTypes;
-use NextDeveloper\Stay\Services\ProductTypesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\ProductTypes\ProductTypesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\ProductTypes\ProductTypesUpdateRequest;
+use NextDeveloper\Stay\Services\ProductTypesService;
+
 class ProductTypesController extends AbstractController
 {
     private $model = ProductTypes::class;

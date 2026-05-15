@@ -2,13 +2,11 @@
 
 namespace NextDeveloper\Stay\Database\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
-use NextDeveloper\Commons\Database\Traits\Filterable;
-use NextDeveloper\Stay\Database\Observers\RegimeConsumerMappingsObserver;
-use NextDeveloper\Commons\Database\Traits\UuidId;
 use NextDeveloper\Commons\Common\Cache\Traits\CleanCache;
+use NextDeveloper\Commons\Database\Traits\Filterable;
 use NextDeveloper\Commons\Database\Traits\Taggable;
+use NextDeveloper\Stay\Database\Observers\RegimeConsumerMappingsObserver;
 
 /**
  * RegimeConsumerMappings model.

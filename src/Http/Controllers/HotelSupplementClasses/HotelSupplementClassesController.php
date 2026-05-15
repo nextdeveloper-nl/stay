@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\HotelSupplementClasses;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\HotelSupplementClasses\HotelSupplementClassesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\HotelSupplementClassesQueryFilter;
 use NextDeveloper\Stay\Database\Models\HotelSupplementClasses;
-use NextDeveloper\Stay\Services\HotelSupplementClassesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\HotelSupplementClasses\HotelSupplementClassesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\HotelSupplementClasses\HotelSupplementClassesUpdateRequest;
+use NextDeveloper\Stay\Services\HotelSupplementClassesService;
+
 class HotelSupplementClassesController extends AbstractController
 {
     private $model = HotelSupplementClasses::class;

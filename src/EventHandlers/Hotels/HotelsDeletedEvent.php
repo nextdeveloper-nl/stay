@@ -2,8 +2,8 @@
 
 namespace NextDeveloper\Stay\EventHandlers\HotelsDeletedEvent;
 
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 /**
  * Class HotelsDeletedEvent

@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\Consumers;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\Consumers\ConsumersUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\ConsumersQueryFilter;
 use NextDeveloper\Stay\Database\Models\Consumers;
-use NextDeveloper\Stay\Services\ConsumersService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\Consumers\ConsumersCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\Consumers\ConsumersUpdateRequest;
+use NextDeveloper\Stay\Services\ConsumersService;
+
 class ConsumersController extends AbstractController
 {
     private $model = Consumers::class;

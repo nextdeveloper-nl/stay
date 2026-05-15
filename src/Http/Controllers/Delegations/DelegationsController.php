@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\Delegations;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\Delegations\DelegationsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\DelegationsQueryFilter;
 use NextDeveloper\Stay\Database\Models\Delegations;
-use NextDeveloper\Stay\Services\DelegationsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\Delegations\DelegationsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\Delegations\DelegationsUpdateRequest;
+use NextDeveloper\Stay\Services\DelegationsService;
+
 class DelegationsController extends AbstractController
 {
     private $model = Delegations::class;

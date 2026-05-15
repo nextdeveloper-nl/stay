@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                    
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,7 +17,7 @@ class QuotaContractsQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function observations($value)
     {
         return $this->builder->where('observations', 'like', '%' . $value . '%');

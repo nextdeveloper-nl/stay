@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-                                        
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,67 +17,67 @@ class ProductGroupsQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function name($value)
     {
         return $this->builder->where('name', 'like', '%' . $value . '%');
     }
-    
+
     public function quickbooksItem($value)
     {
         return $this->builder->where('quickbooks_item', 'like', '%' . $value . '%');
     }
-    
+
     public function exportCode($value)
     {
         return $this->builder->where('export_code', 'like', '%' . $value . '%');
     }
-    
+
     public function channelId($value)
     {
         return $this->builder->where('channel_id', 'like', '%' . $value . '%');
     }
-    
+
     public function room($value)
     {
         return $this->builder->where('room', 'like', '%' . $value . '%');
     }
-    
+
     public function exportCodeC($value)
     {
         return $this->builder->where('export_code_c', 'like', '%' . $value . '%');
     }
-    
+
     public function exportCodeVre($value)
     {
         return $this->builder->where('export_code_vre', 'like', '%' . $value . '%');
     }
-    
+
     public function exportCodeCre($value)
     {
         return $this->builder->where('export_code_cre', 'like', '%' . $value . '%');
     }
-    
+
     public function exportCodeAnalytic($value)
     {
         return $this->builder->where('export_code_analytic', 'like', '%' . $value . '%');
     }
-    
+
     public function commissionAccount($value)
     {
         return $this->builder->where('commission_account', 'like', '%' . $value . '%');
     }
-    
+
     public function alternativeExportCode($value)
     {
         return $this->builder->where('alternative_export_code', 'like', '%' . $value . '%');
     }
-    
+
     public function observations($value)
     {
         return $this->builder->where('observations', 'like', '%' . $value . '%');
     }
-    
+
     public function externalId($value)
     {
         return $this->builder->where('external_id', 'like', '%' . $value . '%');

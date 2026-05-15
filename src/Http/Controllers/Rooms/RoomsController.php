@@ -3,14 +3,15 @@
 namespace NextDeveloper\Stay\Http\Controllers\Rooms;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\Rooms\RoomsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\RoomsQueryFilter;
 use NextDeveloper\Stay\Database\Models\Rooms;
-use NextDeveloper\Stay\Services\RoomsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\Rooms\RoomsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;
+use NextDeveloper\Stay\Http\Requests\Rooms\RoomsUpdateRequest;
+use NextDeveloper\Stay\Services\RoomsService;
+
 class RoomsController extends AbstractController
 {
     private $model = Rooms::class;

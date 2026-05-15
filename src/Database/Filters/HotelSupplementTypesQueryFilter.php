@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-        
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,22 +17,22 @@ class HotelSupplementTypesQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function name($value)
     {
         return $this->builder->where('name', 'like', '%' . $value . '%');
     }
-    
+
     public function class($value)
     {
         return $this->builder->where('class', 'like', '%' . $value . '%');
     }
-    
+
     public function maintenanceControl($value)
     {
         return $this->builder->where('maintenance_control', 'like', '%' . $value . '%');
     }
-    
+
     public function externalId($value)
     {
         return $this->builder->where('external_id', 'like', '%' . $value . '%');

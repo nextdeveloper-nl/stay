@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\SalesContracts;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\SalesContracts\SalesContractsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\SalesContractsQueryFilter;
 use NextDeveloper\Stay\Database\Models\SalesContracts;
-use NextDeveloper\Stay\Services\SalesContractsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\SalesContracts\SalesContractsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\SalesContracts\SalesContractsUpdateRequest;
+use NextDeveloper\Stay\Services\SalesContractsService;
+
 class SalesContractsController extends AbstractController
 {
     private $model = SalesContracts::class;

@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\HotelContracts;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\HotelContracts\HotelContractsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\HotelContractsQueryFilter;
 use NextDeveloper\Stay\Database\Models\HotelContracts;
-use NextDeveloper\Stay\Services\HotelContractsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\HotelContracts\HotelContractsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\HotelContracts\HotelContractsUpdateRequest;
+use NextDeveloper\Stay\Services\HotelContractsService;
+
 class HotelContractsController extends AbstractController
 {
     private $model = HotelContracts::class;

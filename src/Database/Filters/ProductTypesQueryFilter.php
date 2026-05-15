@@ -4,7 +4,7 @@ namespace NextDeveloper\Stay\Database\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use NextDeveloper\Commons\Database\Filters\AbstractQueryFilter;
-        
+
 
 /**
  * This class automatically puts where clause on database so that use can filter
@@ -17,47 +17,47 @@ class ProductTypesQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function name($value)
     {
         return $this->builder->where('name', 'like', '%' . $value . '%');
     }
-    
+
     public function library($value)
     {
         return $this->builder->where('library', 'like', '%' . $value . '%');
     }
-    
+
     public function reservationClass($value)
     {
         return $this->builder->where('reservation_class', 'like', '%' . $value . '%');
     }
-    
+
     public function description($value)
     {
         return $this->builder->where('description', 'like', '%' . $value . '%');
     }
-    
+
     public function externalProvider($value)
     {
         return $this->builder->where('external_provider', 'like', '%' . $value . '%');
     }
-    
+
     public function moduleType($value)
     {
         return $this->builder->where('module_type', 'like', '%' . $value . '%');
     }
-    
+
     public function moduleTypeEn($value)
     {
         return $this->builder->where('module_type_en', 'like', '%' . $value . '%');
     }
-    
+
     public function moduleTypeEs($value)
     {
         return $this->builder->where('module_type_es', 'like', '%' . $value . '%');
     }
-    
+
     public function externalId($value)
     {
         return $this->builder->where('external_id', 'like', '%' . $value . '%');

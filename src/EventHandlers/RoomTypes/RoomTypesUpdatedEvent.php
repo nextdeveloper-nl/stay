@@ -2,8 +2,8 @@
 
 namespace NextDeveloper\Stay\EventHandlers\RoomTypesUpdatedEvent;
 
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 /**
  * Class RoomTypesUpdatedEvent

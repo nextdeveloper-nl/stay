@@ -2,19 +2,18 @@
 
 namespace NextDeveloper\Stay\Services\AbstractServices;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use NextDeveloper\IAM\Helpers\UserHelper;
-use NextDeveloper\Commons\Common\Cache\CacheHelper;
-use NextDeveloper\Commons\Helpers\DatabaseHelper;
-use NextDeveloper\Stay\Database\Models\Reservations;
-use NextDeveloper\Stay\Database\Filters\ReservationsQueryFilter;
-use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
-use NextDeveloper\Events\Services\Events;
 use NextDeveloper\Commons\Database\Models\AvailableActions;
+use NextDeveloper\Commons\Exceptions\ModelNotFoundException;
 use NextDeveloper\Commons\Exceptions\NotAllowedException;
+use NextDeveloper\Commons\Helpers\DatabaseHelper;
+use NextDeveloper\Events\Services\Events;
+use NextDeveloper\IAM\Helpers\UserHelper;
+use NextDeveloper\Stay\Database\Filters\ReservationsQueryFilter;
+use NextDeveloper\Stay\Database\Models\Reservations;
 
 /**
  * This class is responsible from managing the data for Reservations
@@ -134,7 +133,7 @@ class AbstractReservationsService
         return Reservations::where('id', $id)->first();
     }
 
-    
+
     /**
      * This method returns the sub objects of the related models
      *
@@ -195,11 +194,11 @@ class AbstractReservationsService
                 $data['iam_user_id']
             );
         }
-                    
+
         if(!array_key_exists('iam_user_id', $data)) {
             $data['iam_user_id']    = UserHelper::me()->id;
         }
-            
+
         try {
             $model = Reservations::create($data);
         } catch(\Exception $e) {
@@ -271,7 +270,7 @@ class AbstractReservationsService
                 $data['iam_user_id']
             );
         }
-    
+
         Events::fire('updating:NextDeveloper\Stay\Reservations', $model);
 
         try {

@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\MainPurchaseContracts;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\MainPurchaseContracts\MainPurchaseContractsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\MainPurchaseContractsQueryFilter;
 use NextDeveloper\Stay\Database\Models\MainPurchaseContracts;
-use NextDeveloper\Stay\Services\MainPurchaseContractsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\MainPurchaseContracts\MainPurchaseContractsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\MainPurchaseContracts\MainPurchaseContractsUpdateRequest;
+use NextDeveloper\Stay\Services\MainPurchaseContractsService;
+
 class MainPurchaseContractsController extends AbstractController
 {
     private $model = MainPurchaseContracts::class;

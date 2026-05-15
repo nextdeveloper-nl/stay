@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\QuotaContracts;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\QuotaContracts\QuotaContractsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\QuotaContractsQueryFilter;
 use NextDeveloper\Stay\Database\Models\QuotaContracts;
-use NextDeveloper\Stay\Services\QuotaContractsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\QuotaContracts\QuotaContractsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\QuotaContracts\QuotaContractsUpdateRequest;
+use NextDeveloper\Stay\Services\QuotaContractsService;
+
 class QuotaContractsController extends AbstractController
 {
     private $model = QuotaContracts::class;

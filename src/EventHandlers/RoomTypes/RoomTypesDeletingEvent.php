@@ -2,8 +2,8 @@
 
 namespace NextDeveloper\Stay\EventHandlers\RoomTypesDeletingEvent;
 
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 /**
  * Class RoomTypesDeletingEvent

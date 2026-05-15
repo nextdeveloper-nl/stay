@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\SupplementTypes;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\SupplementTypes\SupplementTypesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\SupplementTypesQueryFilter;
 use NextDeveloper\Stay\Database\Models\SupplementTypes;
-use NextDeveloper\Stay\Services\SupplementTypesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\SupplementTypes\SupplementTypesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\SupplementTypes\SupplementTypesUpdateRequest;
+use NextDeveloper\Stay\Services\SupplementTypesService;
+
 class SupplementTypesController extends AbstractController
 {
     private $model = SupplementTypes::class;

@@ -3,14 +3,15 @@
 namespace NextDeveloper\Stay\Http\Controllers\Reservations;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\Reservations\ReservationsUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\ReservationsQueryFilter;
 use NextDeveloper\Stay\Database\Models\Reservations;
-use NextDeveloper\Stay\Services\ReservationsService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\Reservations\ReservationsCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;
+use NextDeveloper\Stay\Http\Requests\Reservations\ReservationsUpdateRequest;
+use NextDeveloper\Stay\Services\ReservationsService;
+
 class ReservationsController extends AbstractController
 {
     private $model = Reservations::class;

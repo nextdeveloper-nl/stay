@@ -2,14 +2,13 @@
 
 namespace NextDeveloper\Stay\Tests\Database\Models;
 
-use Tests\TestCase;
 use GuzzleHttp\Client;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Database\Filters\StayProductGroupQueryFilter;
-use NextDeveloper\Stay\Services\AbstractServices\AbstractStayProductGroupService;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use League\Fractal\Resource\Collection;
+use NextDeveloper\Stay\Database\Filters\StayProductGroupQueryFilter;
+use NextDeveloper\Stay\Services\AbstractServices\AbstractStayProductGroupService;
 
 trait StayProductGroupTestTraits
 {

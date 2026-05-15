@@ -3,14 +3,16 @@
 namespace NextDeveloper\Stay\Http\Controllers\RegimeTypes;
 
 use Illuminate\Http\Request;
-use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Commons\Http\Response\ResponsableFactory;
-use NextDeveloper\Stay\Http\Requests\RegimeTypes\RegimeTypesUpdateRequest;
+use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Commons\Http\Traits\Tags;
 use NextDeveloper\Stay\Database\Filters\RegimeTypesQueryFilter;
 use NextDeveloper\Stay\Database\Models\RegimeTypes;
-use NextDeveloper\Stay\Services\RegimeTypesService;
+use NextDeveloper\Stay\Http\Controllers\AbstractController;
 use NextDeveloper\Stay\Http\Requests\RegimeTypes\RegimeTypesCreateRequest;
-use NextDeveloper\Commons\Http\Traits\Tags;use NextDeveloper\Commons\Http\Traits\Addresses;
+use NextDeveloper\Stay\Http\Requests\RegimeTypes\RegimeTypesUpdateRequest;
+use NextDeveloper\Stay\Services\RegimeTypesService;
+
 class RegimeTypesController extends AbstractController
 {
     private $model = RegimeTypes::class;
