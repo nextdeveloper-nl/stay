@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\Providers;
  */
 class AbstractProvidersService
 {
-    public static function get(ProvidersQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?ProvidersQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

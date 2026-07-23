@@ -24,7 +24,7 @@ class ReservationsDeletingEvent
      */
     protected $timestamp = null;
 
-    public function __construct(Reservations $model = null)
+    public function __construct(?Reservations $model = null)
     {
         $this->_model = $model;
     }

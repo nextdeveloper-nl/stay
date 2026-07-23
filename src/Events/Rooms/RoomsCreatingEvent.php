@@ -24,7 +24,7 @@ class RoomsCreatingEvent
      */
     protected $timestamp = null;
 
-    public function __construct(Rooms $model = null)
+    public function __construct(?Rooms $model = null)
     {
         $this->_model = $model;
     }

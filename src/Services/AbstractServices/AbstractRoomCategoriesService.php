@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\RoomCategories;
  */
 class AbstractRoomCategoriesService
 {
-    public static function get(RoomCategoriesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?RoomCategoriesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

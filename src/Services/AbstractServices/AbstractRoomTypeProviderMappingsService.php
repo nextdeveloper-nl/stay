@@ -23,7 +23,7 @@ use NextDeveloper\Stay\Database\Models\RoomTypeProviderMappings;
  */
 class AbstractRoomTypeProviderMappingsService
 {
-    public static function get(RoomTypeProviderMappingsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?RoomTypeProviderMappingsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

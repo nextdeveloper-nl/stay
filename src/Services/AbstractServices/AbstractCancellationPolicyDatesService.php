@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\CancellationPolicyDates;
  */
 class AbstractCancellationPolicyDatesService
 {
-    public static function get(CancellationPolicyDatesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?CancellationPolicyDatesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

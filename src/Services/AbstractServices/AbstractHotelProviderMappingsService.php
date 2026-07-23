@@ -23,7 +23,7 @@ use NextDeveloper\Stay\Database\Models\HotelProviderMappings;
  */
 class AbstractHotelProviderMappingsService
 {
-    public static function get(HotelProviderMappingsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?HotelProviderMappingsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

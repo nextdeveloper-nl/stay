@@ -17,7 +17,7 @@ class ConsumersQueryFilter extends AbstractQueryFilter
      * @var Builder
      */
     protected $builder;
-    
+
     public function name($value)
     {
         return $this->builder->where('name', 'like', '%' . $value . '%');

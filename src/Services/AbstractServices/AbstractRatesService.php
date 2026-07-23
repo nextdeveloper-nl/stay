@@ -23,7 +23,7 @@ use NextDeveloper\Stay\Database\Models\Rates;
  */
 class AbstractRatesService
 {
-    public static function get(RatesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?RatesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

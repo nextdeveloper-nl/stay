@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\HotelSupplementTypes;
  */
 class AbstractHotelSupplementTypesService
 {
-    public static function get(HotelSupplementTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?HotelSupplementTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

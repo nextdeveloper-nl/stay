@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\Delegations;
  */
 class AbstractDelegationsService
 {
-    public static function get(DelegationsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?DelegationsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

@@ -23,7 +23,7 @@ use NextDeveloper\Stay\Database\Models\RegimeConsumerMappings;
  */
 class AbstractRegimeConsumerMappingsService
 {
-    public static function get(RegimeConsumerMappingsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?RegimeConsumerMappingsQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

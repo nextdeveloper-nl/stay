@@ -35,7 +35,7 @@ class StayUserRole extends AbstractRole implements IAuthorizationRole
         ])->orWhere('is_public', true);
     }
 
-    public function checkPrivileges(Users $users = null)
+    public function checkPrivileges(?Users $users = null)
     {
         //return UserHelper::hasRole(self::NAME, $users);
     }

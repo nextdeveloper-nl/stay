@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\RegimeTypes;
  */
 class AbstractRegimeTypesService
 {
-    public static function get(RegimeTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?RegimeTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

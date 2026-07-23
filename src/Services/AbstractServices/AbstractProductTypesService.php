@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\ProductTypes;
  */
 class AbstractProductTypesService
 {
-    public static function get(ProductTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?ProductTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

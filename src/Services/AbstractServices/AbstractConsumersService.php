@@ -22,7 +22,7 @@ use NextDeveloper\Stay\Database\Models\Consumers;
  */
 class AbstractConsumersService
 {
-    public static function get(ConsumersQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?ConsumersQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

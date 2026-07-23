@@ -24,7 +24,7 @@ class HotelsUpdatingEvent
      */
     protected $timestamp = null;
 
-    public function __construct(Hotels $model = null)
+    public function __construct(?Hotels $model = null)
     {
         $this->_model = $model;
     }

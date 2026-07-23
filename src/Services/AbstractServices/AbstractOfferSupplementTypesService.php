@@ -24,7 +24,7 @@ use NextDeveloper\Stay\Database\Models\OfferSupplementTypes;
  */
 class AbstractOfferSupplementTypesService
 {
-    public static function get(OfferSupplementTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?OfferSupplementTypesQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 

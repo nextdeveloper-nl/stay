@@ -24,7 +24,7 @@ class RoomTypesDeletingEvent
      */
     protected $timestamp = null;
 
-    public function __construct(RoomTypes $model = null)
+    public function __construct(?RoomTypes $model = null)
     {
         $this->_model = $model;
     }
